@@ -70,7 +70,7 @@ const Hero = () => {
             className="relative  object-cover"
             width={500}
             height={500}
-            loading="lazy"
+            loading="eager"
             
           />
 

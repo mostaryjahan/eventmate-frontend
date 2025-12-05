@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Playfair, Roboto } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
+import LoginSuccessToast from "@/components/shared/LoginSuccessToast";
+import LogoutSuccessToast from "@/components/shared/LogoutSuccessToast";
 
 const primary = Playfair({
   variable: "--font-primary",
@@ -24,8 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${secondary.variable} ${primary.variable} antialiased`}>
+      <body className={`${secondary.variable} ${primary.variable} antialiased`} suppressHydrationWarning>
         {children}
+        <Toaster position="top-right" richColors />
+        <LoginSuccessToast />
+        <LogoutSuccessToast />
       </body>
     </html>
   );
