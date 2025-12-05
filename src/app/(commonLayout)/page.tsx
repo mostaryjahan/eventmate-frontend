@@ -22,8 +22,9 @@ const HomePage = () => {
       </Head>
       <main>
         <Hero />
-        <EventCategories/>
         <PopularEvents/>
+        <EventCategories/>
+       
         <HowItWorks/>
         <TopRatedHosts/>
         <Testimonials />

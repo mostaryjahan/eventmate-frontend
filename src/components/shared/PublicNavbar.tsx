@@ -8,11 +8,10 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
 
 const PublicNavbar = async () => {
   const navItems = [
-
     { href: "#", label: "Explore Events" },
-     { href: "#", label: "About" },
+    { href: "/about", label: "About" },
     { href: "#", label: "Become a Host" },
-    { href: "#", label: "Contact" },
+    { href: "/contact", label: "Contact" },
   ];
 
 //   const accessToken = await getCookie("accessToken");
@@ -29,7 +28,7 @@ const PublicNavbar = async () => {
             <Link
               key={link.label}
               href={link.href}
-              className="text-black font-secondary uppercase hover:text-primary transition-colors"
+              className="text-black uppercase hover:text-primary transition-colors"
             >
               {link.label}
             </Link>
@@ -63,7 +62,7 @@ const PublicNavbar = async () => {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="text-lg font-medium"
+                    className=" font-medium uppercase"
                   >
                     {link.label}
                   </Link>
