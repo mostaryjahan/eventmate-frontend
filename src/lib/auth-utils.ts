@@ -19,12 +19,12 @@ export const commonProtectedRoutes: RouteConfig = {
 
 export const adminProtectedRoutes: RouteConfig = {
   patterns: [/^\/admin/],
-  exact: [], // "/admins"
+  exact: [], // "/admin"
 };
 
 export const hostProtectedRoutes: RouteConfig = {
   patterns: [/^\/host/],
-  exact: [], // "/hosts"
+  exact: [], // "/host"
 };
 
 export const userProtectedRoutes: RouteConfig = {
@@ -50,6 +50,7 @@ export const isRouteMatches = (
 export const getRouteOwner = (
   pathname: string
 ): "ADMIN" | "HOST" | "USER" | "COMMON" | null => {
+
   if (isRouteMatches(pathname, adminProtectedRoutes)) {
     return "ADMIN";
   }
@@ -64,6 +65,8 @@ export const getRouteOwner = (
   }
   return null;
 };
+
+
 export const getDefaultDashboardRoute = (role: UserRole): string => {
   if (role === "ADMIN") {
     return "/admin/dashboard";

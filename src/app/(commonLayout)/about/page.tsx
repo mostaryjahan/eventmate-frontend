@@ -1,7 +1,7 @@
-import AboutHero from "@/components/modules/About/AboutHero";
-import OurMission from "@/components/modules/About/OurMission";
-import WhyChooseUs from "@/components/modules/About/WhyChooseUs";
-import OurStory from "@/components/modules/About/OurStory";
+import AboutHero from "@/components/modules/AboutPage/AboutHero";
+import OurMission from "@/components/modules/AboutPage/OurMission";
+import WhyChooseUs from "@/components/modules/AboutPage/WhyChooseUs";
+import OurStory from "@/components/modules/AboutPage/OurStory";
 import Head from "next/head";
 
 const AboutPage = () => {
