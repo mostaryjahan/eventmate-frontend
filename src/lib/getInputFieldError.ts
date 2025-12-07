@@ -1,13 +1,13 @@
 export interface   IInputErrorState {
     success: boolean;
-    errors: {
+    errors?: {
         field: string;
         message: string;
     }[];
 }
 
 
-export const getInputFieldError=(fieldName: string, state: IInputErrorState) => {
+export const getInputFieldError=(fieldName: string, state: IInputErrorState | null) => {
 
      if (state && state.errors) {
       const error = state.errors.find((err) => err.field === fieldName);

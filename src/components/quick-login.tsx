@@ -16,7 +16,7 @@ const QUICK_LOGIN_CREDENTIALS = {
   },
   USER: {
     email: "user@email.com",
-    password: "12345678",
+    password: "user123",
   },
 };
 

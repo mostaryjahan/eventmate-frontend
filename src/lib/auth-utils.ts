@@ -9,7 +9,6 @@ export const authRoutes = [
   "/login",
   "/register",
   "/forgot-password",
-  "/change-password",
 ];
 
 export const commonProtectedRoutes: RouteConfig = {

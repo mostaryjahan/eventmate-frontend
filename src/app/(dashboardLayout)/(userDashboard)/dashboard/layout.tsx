@@ -1,7 +1,7 @@
-const UserDashboardLayout = () => {
+const UserDashboardLayout = ({children}: {children: React.ReactNode}) => {
   return (
     <div>
-      <h1>This is UserDashboardLayout component</h1>
+     {children}
     </div>
   );
 };

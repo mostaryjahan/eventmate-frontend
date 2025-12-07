@@ -8,7 +8,7 @@ if (!validatedPayload.success) {
     return {
         success: false,
         errors: validatedPayload.error.issues.map((issue) => ({
-            field: issue.path[0],
+            field: String(issue.path[0]),
             message: issue.message,
         })),
     };
