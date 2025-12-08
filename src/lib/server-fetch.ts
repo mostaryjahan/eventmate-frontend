@@ -3,19 +3,21 @@ import { getCookie } from "@/services/auth/tokenHandlers";
 const BACKEND_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL || "http://localhost:5000/api";
 
 const serverFetchHelper = async(endpoint: string, options: RequestInit): Promise<Response> =>{
-
     const {headers,...restOption} = options;
-
-    const accessToken = await getCookie("accessToken"); 
+    const accessToken = await getCookie("accessToken");
+    
+    if (!accessToken) {
+        console.log("No access token found");
+    }
 
     const response = fetch(`${BACKEND_API_URL}${endpoint}`,{
          headers:{
             ...headers,
-            Cookie: accessToken ? `accessToken=${accessToken}` : "",
+            ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
          },
-            ...restOption
+         ...restOption
     })
-return response;
+    return response;
 }
 
 export const serverFetch = {

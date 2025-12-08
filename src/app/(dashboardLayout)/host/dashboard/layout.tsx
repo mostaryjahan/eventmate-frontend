@@ -1,7 +1,7 @@
-const HostDashboardLayout = () => {
+const HostDashboardLayout = ({children}: {children: React.ReactNode})  => {
   return (
     <div>
-      <h1>This is HostDashboardLayout component</h1>
+     {children}
     </div>
   );
 };

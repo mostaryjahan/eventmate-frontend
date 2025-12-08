@@ -1,7 +1,7 @@
-const AdminDashboardPage = () => {
+const AdminDashboardPage = ({children}: {children: React.ReactNode}) => {
   return (
     <div>
-      <h1>This is AdminDashboardPage component</h1>
+    {children}
     </div>
   );
 };

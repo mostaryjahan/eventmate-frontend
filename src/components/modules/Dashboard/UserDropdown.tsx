@@ -29,19 +29,31 @@ const UserDropdown = ({ userInfo }: UserDropdownProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon" className="rounded-full p-0 overflow-hidden">
-          <Image 
-            src={userInfo.image || '/placeholder-avatar.png'} 
-            alt={userInfo.name} 
-            width={40} 
-            height={40} 
-            className="rounded-full"
-          />
+          {userInfo.image ? (
+            <Image 
+              src={userInfo.image} 
+              alt={userInfo.name} 
+              width={40} 
+              height={40} 
+              className="rounded-full"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-semibold">
+              {userInfo.name.charAt(0).toUpperCase()}
+            </div>
+          )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel className="flex gap-6">
           <div>
-            <Image src={userInfo.image || '/placeholder-avatar.png'} alt={userInfo.name} width={40} height={40} className="rounded-full border"/>
+            {userInfo.image ? (
+              <Image src={userInfo.image} alt={userInfo.name} width={40} height={40} className="rounded-full border"/>
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-semibold border">
+                {userInfo.name.charAt(0).toUpperCase()}
+              </div>
+            )}
           </div>
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium">{userInfo.name}</p>

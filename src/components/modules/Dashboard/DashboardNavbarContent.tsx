@@ -1,11 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { NavSection } from "@/types/dashboard.interface";
 import { UserInfo } from "@/types/user.interface";
-import { Bell, Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import UserDropdown from "./UserDropdown";
 import DashboardMobileSidebar from "./DashboardMobileSidebar";

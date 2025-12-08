@@ -46,11 +46,11 @@ export const adminNavItems: NavSection[] = [
             {
                 title: "Hosts",
                 href: "/admin/dashboard/hosts-management",
-                icon: "Stethoscope", 
+                icon: "Users", 
                 roles: ["ADMIN"],
             },
             {
-                title: "USERs",
+                title: "Users",
                 href: "/admin/dashboard/users-management",
                 icon: "Users", 
                 roles: ["ADMIN"],
@@ -60,6 +60,12 @@ export const adminNavItems: NavSection[] = [
     {
         title: "Event Management",
         items: [
+            {
+                title: "Event Types",
+                href: "/admin/dashboard/event-type-management",
+                icon: "Calendar", 
+                roles: ["ADMIN"],
+            },
             {
                 title: "Events",
                 href: "/admin/dashboard/events-management",
@@ -76,21 +82,14 @@ export const hostNavItems: NavSection[] = [
         title: "Event Management",
         items: [
             {
-                title: "Events",
-                href: "/host/dashboard/events",
-                icon: "Calendar", 
-                badge: "3",
-                roles: ["HOST"],
-            },
-            {
                 title: "My Hosted Events",
-                href: "/doctor/dashboard/my-events",
-                icon: "Clock", 
+                href: "/host/dashboard/hosted-events",
+                icon: "Event", 
                 roles: ["HOST"],
             },
             {
                 title: "Payments",
-                href: "/doctor/dashboard/my-payments",
+                href: "/host/dashboard/my-payments",
                 icon: "FileText", 
                 roles: ["HOST"],
             },
