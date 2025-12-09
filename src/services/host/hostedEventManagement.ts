@@ -10,17 +10,27 @@ export const createEvent = async (_prevState: any, formData: FormData) => {
     const data: any = {};
 
     formData.forEach((value, key) => {
-      if (key !== "file" && value) {
-        data[key] = value;
+      if (key !== "image" && value) {
+        if (key === "minParticipants" || key === "maxParticipants") {
+          data[key] = parseInt(value as string, 10);
+        } else if (key === "joiningFee") {
+          data[key] = parseFloat(value as string);
+        } else if (key === "dateTime") {
+          data[key] = new Date(value as string).toISOString();
+        } else {
+          data[key] = value;
+        }
       }
     });
 
     uploadFormData.append("data", JSON.stringify(data));
 
-    const file = formData.get("file");
+    const file = formData.get("image");
     if (file && file instanceof File && file.size > 0) {
-      uploadFormData.append("file", file);
+      uploadFormData.append("image", file);
     }
+
+    console.log("Data being sent to backend:", data);
 
     const response = await serverFetch.post("/events", {
       body: uploadFormData,
@@ -29,9 +39,11 @@ export const createEvent = async (_prevState: any, formData: FormData) => {
     const result = await response.json().catch(() => null);
 
     if (!response.ok) {
+      console.error("Backend error response:", result);
       return {
         success: false,
         message: result?.message || "Failed to create event",
+        errors: result?.errors || result?.errorDetails,
       };
     }
 
@@ -86,13 +98,53 @@ export const getHostedEventById = async (eventId: string) => {
 };
 
 // update my hosted event
-export const updateHostedEvent = async (eventId: string, data: any) => {
+export const updateHostedEvent = async (eventId: string, formData: FormData) => {
   try {
-    const response = await serverFetch.patch(`/events/${eventId}`, {
-      body: JSON.stringify(data),
+    const uploadFormData = new FormData();
+    const data: any = {};
+
+    formData.forEach((value, key) => {
+      if (key !== "image" && value) {
+        if (key === "minParticipants" || key === "maxParticipants") {
+          data[key] = parseInt(value as string, 10);
+        } else if (key === "joiningFee") {
+          data[key] = parseFloat(value as string);
+        } else if (key === "dateTime") {
+          data[key] = new Date(value as string).toISOString();
+        } else {
+          data[key] = value;
+        }
+      }
     });
-    const result = await response.json();
-    return result;
+
+    uploadFormData.append("data", JSON.stringify(data));
+
+    const file = formData.get("image");
+    if (file && file instanceof File && file.size > 0) {
+      uploadFormData.append("image", file);
+    }
+
+    console.log("Update data being sent:", data);
+
+    const response = await serverFetch.patch(`/events/${eventId}`, {
+      body: uploadFormData,
+    });
+
+    const result = await response.json().catch(() => null);
+
+    if (!response.ok) {
+      console.error("Backend error response:", result);
+      return {
+        success: false,
+        message: result?.message || "Failed to update event",
+        errors: result?.errors || result?.errorDetails,
+      };
+    }
+
+    return {
+      success: true,
+      message: result?.message || "Event updated successfully",
+    };
   } catch (error: any) {
     console.log(error);
     return {

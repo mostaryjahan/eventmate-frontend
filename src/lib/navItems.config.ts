@@ -69,7 +69,7 @@ export const adminNavItems: NavSection[] = [
             {
                 title: "Events",
                 href: "/admin/dashboard/events-management",
-                icon: "Calendar", 
+                icon: "CalendarCog", 
                 roles: ["ADMIN"],
             },
         ],
@@ -84,12 +84,12 @@ export const hostNavItems: NavSection[] = [
             {
                 title: "My Hosted Events",
                 href: "/host/dashboard/hosted-events",
-                icon: "Event", 
+                icon: "CalendarCog", 
                 roles: ["HOST"],
             },
             {
                 title: "Payments",
-                href: "/host/dashboard/my-payments",
+                href: "/host/dashboard/my-revenues",
                 icon: "FileText", 
                 roles: ["HOST"],
             },
@@ -118,7 +118,23 @@ export const userNavItems: NavSection[] = [
             },
         ],
     },
-    
+    {
+        title: "Social",
+        items: [
+            {
+                title: "Friends",
+                href: "/dashboard/friends",
+                icon: "Users", 
+                roles: ["USER"],
+            },
+            {
+                title: "Friends' Events",
+                href: "/dashboard/friends-events",
+                icon: "Calendar", 
+                roles: ["USER"],
+            },
+        ],
+    },
 
 ]
 

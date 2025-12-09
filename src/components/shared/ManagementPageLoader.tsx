@@ -38,11 +38,11 @@ export function ManagementPageLoading({
       {/* Header Skeleton */}
       <div className="flex items-center justify-between">
         <div className="space-y-2">
-          <div className="h-8 w-64 bg-slate-300 dark:bg-slate-700 animate-pulse rounded-md shadow-sm" />
-          <div className="h-4 w-96 bg-slate-300 dark:bg-slate-700 animate-pulse rounded-md shadow-sm" />
+          <div className="h-8 w-64 bg-slate-200 dark:bg-slate-700 animate-pulse rounded-md shadow-sm" />
+          <div className="h-4 w-96 bg-slate-200 dark:bg-slate-700 animate-pulse rounded-md shadow-sm" />
         </div>
         {hasActionButton && (
-          <div className="h-10 w-32 bg-slate-300 dark:bg-slate-700 animate-pulse rounded-md shadow-sm" />
+          <div className="h-10 w-32 bg-slate-200 dark:bg-slate-700 animate-pulse rounded-md shadow-sm" />
         )}
       </div>
 

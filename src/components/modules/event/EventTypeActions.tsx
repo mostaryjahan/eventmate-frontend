@@ -6,11 +6,9 @@ import { Button } from "@/components/ui/button";
 import { EventTypeDialog } from "@/components/modules/event/EventTypeDialog";
 import { deleteType } from "@/services/admin/eventTypeManagement";
 import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDialog";
+import { EventType } from "@/types/event.interface";
 
-interface EventType {
-  id: string;
-  name: string;
-}
+
 
 export function EventTypeActions({ eventType }: { eventType?: EventType }) {
   const router = useRouter();

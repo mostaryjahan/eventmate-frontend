@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { logoutUser } from "@/services/auth/logout";
 import { UserInfo } from "@/types/user.interface";
-
 import { Settings, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,6 +24,7 @@ const UserDropdown = ({ userInfo }: UserDropdownProps) => {
   const handleLogout = async () => {
     await logoutUser();
   };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

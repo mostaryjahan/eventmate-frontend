@@ -1,11 +1,8 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getAllTypes } from "@/services/admin/eventTypeManagement";
-import { EventTypeActions } from "./EventTypeActions";
+import { EventTypeActions } from "../../../../../components/modules/event/EventTypeActions";
+import { EventType } from "@/types/event.interface";
 
-interface EventType {
-  id: string;
-  name: string;
-}
 
 const EventTypeManagementPage = async () => {
   const result = await getAllTypes();
@@ -14,6 +11,7 @@ const EventTypeManagementPage = async () => {
   return (
     <div className="p-6">
       <EventTypeActions />
+      {/* table */}
       <Table>
         <TableHeader>
           <TableRow>

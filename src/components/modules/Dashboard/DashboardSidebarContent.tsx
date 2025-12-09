@@ -19,20 +19,21 @@ interface DashboardSidebarContentProps {
 const DashboardSidebarContent = ({
   userInfo,
   navItems,
-  dashboardHome,
 }: DashboardSidebarContentProps) => {
+  
   const pathname = usePathname();
+
   return (
     <div className="hidden md:flex h-full w-64 flex-col border-r bg-card">
       {/* Logo/Brand */}
       <div className="flex h-16 items-center border-b px-6">
-        <Link href={dashboardHome} className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2">
           <span className="text-xl font-bold text-primary">EventMate</span>
         </Link>
       </div>
 
       {/* Navigation */}
-      <ScrollArea className="flex-1 px-3 py-4">
+      <ScrollArea className="flex-1 px-3 py-2">
         <nav className="space-y-6">
           {navItems.map((section, sectionIdx) => (
             <div key={sectionIdx}>
@@ -53,7 +54,7 @@ const DashboardSidebarContent = ({
                       className={cn(
                         "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all",
                         isActive
-                          ? "bg-primary text-primary-foreground"
+                          ? "border-b-2 border-primary/40 text-primary"
                           : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                       )}
                     >
@@ -72,7 +73,7 @@ const DashboardSidebarContent = ({
                 })}
               </div>
               {sectionIdx < navItems.length - 1 && (
-                <Separator className="my-4" />
+                <Separator className="my-2" />
               )}
             </div>
           ))}
