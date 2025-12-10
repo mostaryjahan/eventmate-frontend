@@ -177,3 +177,21 @@ export const deleteHostedEvent = async (eventId: string) => {
   }
 };
 
+// get participants for a specific event
+export const getEventParticipants = async (eventId: string) => {
+  try {
+    const response = await serverFetch.get(`/events/${eventId}/participants`);
+    const result = await response.json();
+    return result;
+  } catch (error: any) {
+    console.log(error);
+    return {
+      success: false,
+      message: `${
+        process.env.NODE_ENV === "development"
+          ? error.message
+          : "Something went wrong"
+      }`,
+    };
+  }
+};

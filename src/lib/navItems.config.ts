@@ -88,9 +88,15 @@ export const hostNavItems: NavSection[] = [
                 roles: ["HOST"],
             },
             {
-                title: "Payments",
+                title: "Revenue",
                 href: "/host/dashboard/my-revenues",
                 icon: "FileText", 
+                roles: ["HOST"],
+            },
+             {
+                title: "Participants Manage",
+                href: "/host/dashboard/participants-management",
+                icon: "Users", 
                 roles: ["HOST"],
             },
         ],

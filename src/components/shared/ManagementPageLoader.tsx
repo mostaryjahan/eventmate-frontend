@@ -26,7 +26,7 @@ export function ManagementPageLoading({
             key={index}
             className={`h-10 ${
               filterWidths[index] || "w-40"
-            } bg-slate-300 dark:bg-slate-700 animate-pulse rounded-md border-2 border-slate-400 dark:border-slate-500 shadow-sm`}
+            } bg-slate-200 dark:bg-slate-700 animate-pulse rounded-md border-2 border-slate-300 dark:border-slate-500 shadow-sm`}
           />
         ))}
       </div>

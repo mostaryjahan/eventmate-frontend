@@ -1,16 +1,17 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { getFriendsEvents } from "@/services/friend/friend.service";
+import { getAllFriendsEvents } from "@/services/friend/friendManagement";
 import Link from "next/link";
 import { Calendar, MapPin } from "lucide-react";
 
 export default async function FriendsEventsPage() {
-  const result = await getFriendsEvents();
-  const events = result?.data || [];
-
+  const result = await getAllFriendsEvents();
+  const data = await result.json();
+  const events = data?.data || [];
+  
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Friends' Events</h1>
+      <h1 className="text-3xl font-bold">Friend&apos;s Events</h1>
 
       {events.length === 0 ? (
         <Card>

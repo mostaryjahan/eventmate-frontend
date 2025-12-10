@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { sendFriendRequests } from "@/services/friend/friendManagement";
 import { UserPlus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -15,12 +16,9 @@ export function FriendRequestButton({ userId }: FriendRequestButtonProps) {
   const handleSendRequest = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/friends/request`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ friendId: userId }),
-      });
+      const formData = new FormData();
+      formData.append("friendId", userId);
+      const res = await sendFriendRequests(null, formData);
 
       if (res.ok) {
         toast.success("Friend request sent");
@@ -30,13 +28,14 @@ export function FriendRequestButton({ userId }: FriendRequestButtonProps) {
       }
     } catch (error) {
       toast.error("Something went wrong");
+      console.error("Error sending friend request:", error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Button onClick={handleSendRequest} disabled={loading} variant="outline">
+    <Button onClick={handleSendRequest} disabled={loading}>
       <UserPlus className="w-4 h-4 mr-2" />
       {loading ? "Sending..." : "Add Friend"}
     </Button>
