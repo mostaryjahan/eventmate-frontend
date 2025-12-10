@@ -5,7 +5,7 @@ import { getUserInfo } from "@/services/auth/getUserInfo";
 import { Ticket } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export const BookNowButton = ({ eventId }: { eventId: string }) => {
+export const BookNowButton = ({ eventId, disabled = false }: { eventId: string; disabled?: boolean }) => {
   const router = useRouter();
 
   const handleBookNow = async () => {
@@ -21,10 +21,15 @@ export const BookNowButton = ({ eventId }: { eventId: string }) => {
   return (
     <Button 
       onClick={handleBookNow}
-      className="w-full bg-gradient-to-r from-[#a11f65] to-purple-600 hover:from-[#8a1a55] hover:to-purple-700 text-white shadow-md hover:shadow-lg transition-all"
+      disabled={disabled}
+      className={`w-full shadow-md hover:shadow-lg transition-all ${
+        disabled 
+          ? "bg-primary/90 cursor-not-allowed" 
+          : "bg-primary hover:to-purple-700"
+      } text-white`}
     >
       <Ticket className="w-4 h-4 mr-2" />
-      Book Now
+      {disabled ? "Event Passed" : "Book Now"}
     </Button>
   );
 };

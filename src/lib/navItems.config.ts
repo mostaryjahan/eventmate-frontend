@@ -55,6 +55,12 @@ export const adminNavItems: NavSection[] = [
                 icon: "Users", 
                 roles: ["ADMIN"],
             },
+              {
+                title: "Host Applications",
+                href: "/admin/dashboard/host-applications",
+                icon: "Users", 
+                roles: ["ADMIN"],
+            },
         ],
     },
     {
@@ -114,6 +120,12 @@ export const userNavItems: NavSection[] = [
                 title: "My Events",
                 href: "/dashboard/my-events",
                 icon: "Calendar", 
+                roles: ["USER"],
+            },
+            {
+                title: "Saved Events",
+                href: "/dashboard/saved-events",
+                icon: "Bookmark", 
                 roles: ["USER"],
             },
             {

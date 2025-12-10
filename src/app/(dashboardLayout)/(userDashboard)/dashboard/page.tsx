@@ -1,13 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getMyEvents } from "@/services/user/userEventManagement";
+import { getMyEvents, getSavedEvents } from "@/services/user/userEventManagement";
 import { IEvent } from "@/types/event.interface";
 import { CalendarIcon, CheckCircle, ClockIcon, UsersIcon } from "lucide-react";
 import Link from "next/link";
 import { ReviewDialog } from "@/components/modules/review/ReviewDialog";
+import HostApplicationStatus from "@/components/modules/ApplyForHost/HostApplicationStatus";
 
 const UserDashboardPage = async () => {
   const result = await getMyEvents();
+  const savedResult = await getSavedEvents();
   const events: IEvent[] = result?.data || [];
+  const savedEvents: IEvent[] = savedResult?.data || [];
 
   const upcomingEvents = events.filter(
     (e) => new Date(e.dateTime) > new Date()
@@ -16,7 +19,10 @@ const UserDashboardPage = async () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">My Dashboard</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-semibold">My Dashboard</h1>
+        <HostApplicationStatus />
+      </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
@@ -58,12 +64,12 @@ const UserDashboardPage = async () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Pending Invitations
+              Saved Events
             </CardTitle>
             <ClockIcon className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">0</div>
+            <div className="text-2xl font-bold">{savedEvents.length}</div>
           </CardContent>
         </Card>
       </div>

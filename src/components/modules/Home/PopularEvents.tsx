@@ -4,9 +4,7 @@ import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
 import { getAllEvents } from "@/services/admin/eventManagement";
 import { IEvent } from "@/types/event.interface";
-import { EventCard } from "./EventCard";
-
-
+import { EventCard } from "../event/EventCard";
 
 const PopularEvents = async () => {
   const result = await getAllEvents();
@@ -25,22 +23,23 @@ const PopularEvents = async () => {
             Popular Events Near You
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Don&apos;t miss out on these trending events. Find your perfect match!
+            Don&apos;t miss out on these trending events. Find your perfect
+            match!
           </p>
         </div>
-        
+
         {/* Events Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {events.slice(0, 6).map((event: IEvent) => (
             <EventCard key={event.id} event={event} />
           ))}
         </div>
-        
+
         {/* View More Button */}
         <div className="text-center mt-12">
           <Link href="/all-events">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="px-8 py-6 border-2 border-gray-300 text-gray-700 hover:border-[#a11f65] hover:text-[#a11f65] hover:bg-[#a11f65]/5 text-lg font-medium"
             >
               View All Events

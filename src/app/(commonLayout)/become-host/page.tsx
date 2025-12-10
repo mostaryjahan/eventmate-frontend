@@ -1,40 +1,9 @@
-"use client";
+import ApplyForHost from "@/components/modules/ApplyForHost/ApplyForHost";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "sonner";
 
 export default function BecomeHostPage() {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-
-  const handleBecomeHost = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/update-role`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ role: "HOST" }),
-      });
-
-      if (res.ok) {
-        toast.success("You are now a host!");
-        router.push("/host/dashboard");
-      } else {
-        const data = await res.json();
-        toast.error(data.message || "Failed to become host");
-      }
-    } catch (error) {
-      toast.error("Something went wrong");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const benefits = [
     "Create and manage your own events",
     "Set your own pricing and schedules",
@@ -76,17 +45,10 @@ export default function BecomeHostPage() {
           </CardHeader>
           <CardContent>
             <p className="mb-6 text-muted-foreground">
-              Upgrade your account to host status and start creating events today. 
-              You'll get access to all host features immediately.
+              Upgrade your account to host status and start creating events
+              today. You&apos;ll get access to all host features immediately.
             </p>
-            <Button 
-              onClick={handleBecomeHost} 
-              disabled={loading}
-              size="lg"
-              className="w-full md:w-auto"
-            >
-              {loading ? "Processing..." : "Become a Host Now"}
-            </Button>
+            <ApplyForHost />
           </CardContent>
         </Card>
       </div>

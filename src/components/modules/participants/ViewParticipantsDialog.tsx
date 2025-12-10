@@ -20,6 +20,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { IParticipant } from "@/types/participants";
 import { UserProfileDialog } from "./UserProfileDialog";
 import { UserInfo } from "@/types/user.interface";
+import { FriendRequestButton } from "../friend/FriendRequestButton";
 
 export const ViewParticipantsDialog = ({
   eventId,
@@ -103,6 +104,9 @@ export const ViewParticipantsDialog = ({
             </TableBody>
           </Table>
         )}
+        <div className="flex justify-end">
+          <FriendRequestButton userId={selectedUser?.id || ""} />
+        </div>
       </DialogContent>
       {selectedUser && (
         <UserProfileDialog

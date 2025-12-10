@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { EventTypeDialog } from "@/components/modules/event/EventTypeDialog";
 import { deleteType } from "@/services/admin/eventTypeManagement";
 import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDialog";
 import { EventType } from "@/types/event.interface";
+import { EventTypeDialog } from "./EventTypeDialog";
 
 
 

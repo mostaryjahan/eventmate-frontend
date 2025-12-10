@@ -45,7 +45,7 @@ const EventManagement = async () => {
                   <TableCell className="font-medium">{event.name}</TableCell>
                   <TableCell>{new Date(event.dateTime).toLocaleDateString()}</TableCell>
                   <TableCell>{event.location}</TableCell>
-                  <TableCell>{event.type}</TableCell>
+                  <TableCell>{event.type.name}</TableCell>
                   <TableCell>{event._count?.participants || 0}</TableCell>
                   <TableCell>${event.joiningFee}</TableCell>
                   <TableCell>

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserInfo } from "@/types/user.interface";
 import { NavSection } from "@/types/dashboard.interface";
+import Logo from "@/assets/logo/logo";
 
 interface DashboardSidebarContentProps {
   userInfo: UserInfo;
@@ -26,8 +27,10 @@ const DashboardSidebarContent = ({
   return (
     <div className="hidden md:flex h-full w-64 flex-col border-r bg-card">
       {/* Logo/Brand */}
-      <div className="flex h-16 items-center border-b px-6">
-        <Link href="/" className="flex items-center space-x-2">
+      <div className="flex h-16 border-b px-6">
+        <Link href="/" className="flex items-center">
+        
+        <Logo/>
           <span className="text-xl font-bold text-primary">EventMate</span>
         </Link>
       </div>

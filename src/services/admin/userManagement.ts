@@ -41,12 +41,12 @@ export const getUsersById = async (id: string) => {
 
 
 // update role user to host
-export const updateUsers = async (id: string, formData: FormData) => {
+export const updateUsers = async (id: string, data: FormData | object) => {
   try {
-   
-
+    const isFormData = data instanceof FormData;
     const response = await serverFetch.patch(`/users/update-role/${id}`, {
-      body: formData,
+      body: isFormData ? data : JSON.stringify(data),
+      headers: isFormData ? {} : { 'Content-Type': 'application/json' },
     });
     const result = await response.json();
     return result;
@@ -62,5 +62,7 @@ export const updateUsers = async (id: string, formData: FormData) => {
     };
   }
 };
+
+
 
 

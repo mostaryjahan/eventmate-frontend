@@ -18,6 +18,7 @@ interface ReviewsListProps {
 }
 
 export function ReviewsList({ reviews }: ReviewsListProps) {
+ 
   if (reviews.length === 0) {
     return <p className="text-muted-foreground">No reviews yet</p>;
   }
@@ -32,6 +33,7 @@ export function ReviewsList({ reviews }: ReviewsListProps) {
                 <AvatarImage src={review.reviewer.image} />
                 <AvatarFallback>{review.reviewer.name[0]}</AvatarFallback>
               </Avatar>
+           
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold">{review.reviewer.name}</h4>
@@ -41,7 +43,10 @@ export function ReviewsList({ reviews }: ReviewsListProps) {
                 </div>
                 <StarRating rating={review.rating} readonly size={16} />
                 {review.comment && (
-                  <p className="mt-2 text-sm text-gray-700">{review.comment}</p>
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-700">{review.comment}</p>
+                    <span className="text-xs text-muted-foreground">({review.comment.length} characters)</span>
+                  </div>
                 )}
               </div>
             </div>

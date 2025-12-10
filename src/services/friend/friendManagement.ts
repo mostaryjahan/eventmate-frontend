@@ -22,7 +22,6 @@ export const sendFriendRequests = async (
 
   if (!response.ok) {
     const error = await response.json();
-    console.error("[sendFriendRequests] Error:", error);
     throw new Error(error.message || "Failed to send friend request");
   }
 
@@ -79,9 +78,13 @@ export const RemoveFriends = async (friendId: string) => {
 
 // get all friends events
 export const getAllFriendsEvents = async () => {
-  const response = await serverFetch.get("/friends/events");
-  const data = await response.json();
-  return { ok: response.ok, json: async () => data };
+  try {
+    const response = await serverFetch.get("/friends/events");
+    const data = await response.json();
+    return { ok: response.ok, json: async () => data };
+  } catch (error) {
+    return { ok: false, json: async () => ({ error: "Failed to fetch friends events" }) };
+  }
 };
 
 // get specific friend's participated events

@@ -27,7 +27,7 @@ export function FriendRequestButton({ userId }: FriendRequestButtonProps) {
         toast.error(data.message || "Failed to send request");
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Please login first to send friend request");
       console.error("Error sending friend request:", error);
     } finally {
       setLoading(false);

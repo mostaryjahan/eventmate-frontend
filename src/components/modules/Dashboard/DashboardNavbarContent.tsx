@@ -57,7 +57,7 @@ const DashboardNavbarContent = ({
 
         {/* Search Bar */}
         <div className="flex-1">
-          <h1 className="text-primary text-xl font-semibold">
+          <h1 className="text-primary text-sm md:text-xl font-semibold">
             Welcome, {userInfo.name}
           </h1>
         </div>

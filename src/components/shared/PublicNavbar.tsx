@@ -6,10 +6,11 @@ import { getCookie } from "@/services/auth/tokenHandlers";
 import { getUserInfo } from "@/services/auth/getUserInfo";
 import LogoutButton from "./LogoutButton";
 import UserDropdown from "../modules/Dashboard/UserDropdown";
+import Logo from "../../assets/logo/logo";
 
 const PublicNavbar = async () => {
   const navItems = [
-    { href: "/all-events", label: "Explore Events" },
+    { href: "/events", label: "Explore Events" },
     { href: "/about", label: "About" },
     { href: "/become-host", label: "Become a Host" },
     { href: "/contact", label: "Contact" },
@@ -21,8 +22,9 @@ const PublicNavbar = async () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur  dark:bg-background/95">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold text-primary">EV</span>
+        <Link href="/" className="flex items-center">
+          <Logo />
+          <p className="text-xl font-bold text-primary">EventMate</p>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
@@ -41,7 +43,7 @@ const PublicNavbar = async () => {
           {userInfo ? (
             <div className="flex items-center gap-2">
               <UserDropdown userInfo={userInfo} />
-              
+
               <LogoutButton />
             </div>
           ) : (
