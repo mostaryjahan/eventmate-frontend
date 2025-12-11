@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import LoginSuccessToast from "@/components/shared/LoginSuccessToast";
 import LogoutSuccessToast from "@/components/shared/LogoutSuccessToast";
+import { Suspense } from "react";
 
 const primary = Playfair({
   variable: "--font-primary",
@@ -30,8 +31,10 @@ export default function RootLayout({
       <body className={`${secondary.variable} ${primary.variable} antialiased`} suppressHydrationWarning>
         {children}
         <Toaster position="top-right" richColors />
+         <Suspense fallback={null}>
         <LoginSuccessToast />
         <LogoutSuccessToast />
+        </Suspense>
       </body>
     </html>
   );

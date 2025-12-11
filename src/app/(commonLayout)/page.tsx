@@ -8,6 +8,8 @@ import TopRatedHosts from "@/components/modules/Home/TopRatedHosts";
 import WhyChooseUs from "@/components/modules/Home/WhyChooseUs";
 import Head from "next/head";
 
+export const dynamic = "force-dynamic";
+
 const HomePage = () => {
   return (
     <>

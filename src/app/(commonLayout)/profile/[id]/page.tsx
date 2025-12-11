@@ -15,21 +15,24 @@ export default async function ProfilePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const result = await serverFetch(`/users/${id}`);
+  const response = await serverFetch.get(`/users/${id}`);
+  const result = await response.json();
 
   if (!result?.success || !result?.data) {
     notFound();
   }
 
   const user = result.data;
-  const eventsResult = await serverFetch(`/events?createdBy=${id}`);
+  const eventsResponse = await serverFetch.get(`/events?createdBy=${id}`);
+  const eventsResult = await eventsResponse.json();
   const hostedEvents = eventsResult?.data || [];
 
-  const reviewsResult = await getHostReviews(id);
+  const reviewsResponse = await getHostReviews(id);
+  const reviewsResult = await reviewsResponse.json();
   const reviews = reviewsResult?.data || [];
   const avgRating =
     reviews.length > 0
-      ? reviews.reduce((sum: number, r: any) => sum + r.rating, 0) /
+      ? reviews.reduce((sum: number, r: { rating: number }) => sum + r.rating, 0) /
         reviews.length
       : 0;
 
@@ -107,7 +110,7 @@ export default async function ProfilePage({
             </CardHeader>
             <CardContent>
               <div className="grid gap-4 md:grid-cols-2">
-                {hostedEvents.map((event: any) => (
+                {hostedEvents.map((event: { id: string; name: string; dateTime: string; location: string }) => (
                   <div key={event.id} className="p-4 border rounded-lg">
                     <h3 className="font-semibold">{event.name}</h3>
                     <p className="text-sm text-muted-foreground">

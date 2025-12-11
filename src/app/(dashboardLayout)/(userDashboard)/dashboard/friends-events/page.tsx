@@ -36,7 +36,18 @@ export default async function FriendsEventsPage() {
   try {
     const result = await getAllFriendsEvents();
     
-
+    if (!result) {
+      return (
+        <div className="space-y-6">
+          <h1 className="text-3xl font-bold">Friend&apos;s Events</h1>
+          <Card>
+            <CardContent className="pt-6">
+              <p className="text-red-500">Error loading friends events. Please refresh the page.</p>
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
     
     const data = await result.json();
     const events = data?.data || data?.events || data || [];
