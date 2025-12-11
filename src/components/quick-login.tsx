@@ -12,7 +12,7 @@ const QUICK_LOGIN_CREDENTIALS = {
   },
   HOST: {
     email: "host@email.com",
-    password: "12345678",
+    password: "host123",
   },
   USER: {
     email: "user@email.com",

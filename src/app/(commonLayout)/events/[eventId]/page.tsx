@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, Clock, User } from "lucide-react";
 import Image from "next/image";
 import { BookNowButton } from "@/components/modules/Home/BookNowButton";
+import JoinLeaveButton from "@/components/modules/event/JoinLeaveButton";
 import { getEventReviews } from "@/services/review/review.service";
 import { ReviewsList } from "@/components/modules/review/ReviewsList";
 import { StarRating } from "@/components/ui/star-rating";
@@ -45,6 +46,8 @@ export default async function EventPage({
       ? reviews.reduce((sum: number, r: any) => sum + r.rating, 0) /
         reviews.length
       : 0;
+
+       const isEventPassed = new Date(event.dateTime) < new Date();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
@@ -147,8 +150,14 @@ export default async function EventPage({
               </div>
             )}
 
-            <div className="flex gap-4">
-              <BookNowButton eventId={event.id} />
+            <div className="flex justify-between gap-4 max-w-md">
+              <BookNowButton eventId={event.id}  disabled={isEventPassed} />
+              <JoinLeaveButton 
+                eventId={event.id}
+                participants={event.participants || []}
+                eventStatus={event.status}
+                maxParticipants={event.maxParticipants}
+              />
             </div>
           </CardContent>
         </Card>

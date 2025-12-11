@@ -21,11 +21,9 @@ import { IEvent, IStatus } from "@/types/event.interface";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { EventActions } from "./EventActions";
-import EventFormDialog from "./EventFormDialog";
 
 const EventManagement = () => {
   const [events, setEvents] = useState<IEvent[]>([]);
-  const [editingEvent, setEditingEvent] = useState<IEvent | null>(null);
 
   // Initial fetch of events
   useEffect(() => {
@@ -45,18 +43,6 @@ const EventManagement = () => {
 
   const handleEventDeleted = (deletedEventId: string) => {
     setEvents(events.filter(e => e.id !== deletedEventId));
-  };
-
-  const handleEventUpdated = () => {
-    // Re-fetch events to update the list after an event is updated
-    getHostedEvents().then((result) => {
-      setEvents(result?.data || []);
-    });
-    setEditingEvent(null);
-  };
-
-  const handleEditEvent = (event: IEvent) => {
-    setEditingEvent(event);
   };
 
   return (
@@ -119,20 +105,13 @@ const EventManagement = () => {
                   </Select>
                 </TableCell>
                 <TableCell>
-                  <EventActions event={event} onEventDeleted={handleEventDeleted} onEditEvent={handleEditEvent} userType="host" />
+                  <EventActions event={event} onEventDeleted={handleEventDeleted} userType="host" />
                 </TableCell>
               </TableRow>
             ))
           )}
         </TableBody>
       </Table>
-      
-      <EventFormDialog
-        open={!!editingEvent}
-        onClose={() => setEditingEvent(null)}
-        onSuccess={handleEventUpdated}
-        event={editingEvent || undefined}
-      />
     </div>
   );
 };

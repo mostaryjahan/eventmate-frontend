@@ -21,6 +21,10 @@ export const getEventReviews = async (eventId: string) => {
   return await serverFetch.get(`/reviews/event/${eventId}`);
 };
 
+export const getAllReviews = async () => {
+  return await serverFetch.get("/reviews");
+};
+
 export const getHostReviews = async (hostId: string) => {
   return await serverFetch.get(`/reviews/host/${hostId}`);
 };
