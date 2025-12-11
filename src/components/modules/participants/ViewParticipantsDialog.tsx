@@ -20,7 +20,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { IParticipant } from "@/types/participants";
 import { UserProfileDialog } from "./UserProfileDialog";
 import { UserInfo } from "@/types/user.interface";
-import { FriendRequestButton } from "../friend/FriendRequestButton";
 
 export const ViewParticipantsDialog = ({
   eventId,
@@ -98,15 +97,23 @@ export const ViewParticipantsDialog = ({
                     <TableCell>
                       {new Date(participant.joinedAt).toLocaleDateString()}
                     </TableCell>
+                    <TableCell>
+                      <button
+                        className="bg-none hover:underline"
+                        onClick={() => {
+                          setSelectedUser(participant.user);
+                          setProfileOpen(true);
+                        }}
+                      >
+                        View Profile
+                      </button>
+                    </TableCell>
                   </TableRow>
                 ))
               )}
             </TableBody>
           </Table>
         )}
-        <div className="flex justify-end">
-          <FriendRequestButton userId={selectedUser?.id || ""} />
-        </div>
       </DialogContent>
       {selectedUser && (
         <UserProfileDialog

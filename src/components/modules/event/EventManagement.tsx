@@ -21,9 +21,11 @@ import { IEvent, IStatus } from "@/types/event.interface";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { EventActions } from "./EventActions";
+import EventFormDialog from "./EventFormDialog";
 
 const EventManagement = () => {
   const [events, setEvents] = useState<IEvent[]>([]);
+  const [editingEvent, setEditingEvent] = useState<IEvent | null>(null);
 
   // Initial fetch of events
   useEffect(() => {
@@ -50,6 +52,11 @@ const EventManagement = () => {
     getHostedEvents().then((result) => {
       setEvents(result?.data || []);
     });
+    setEditingEvent(null);
+  };
+
+  const handleEditEvent = (event: IEvent) => {
+    setEditingEvent(event);
   };
 
   return (
@@ -112,13 +119,20 @@ const EventManagement = () => {
                   </Select>
                 </TableCell>
                 <TableCell>
-                  <EventActions event={event} onEventDeleted={handleEventDeleted} onEventUpdated={handleEventUpdated} />
+                  <EventActions event={event} onEventDeleted={handleEventDeleted} onEditEvent={handleEditEvent} userType="host" />
                 </TableCell>
               </TableRow>
             ))
           )}
         </TableBody>
       </Table>
+      
+      <EventFormDialog
+        open={!!editingEvent}
+        onClose={() => setEditingEvent(null)}
+        onSuccess={handleEventUpdated}
+        event={editingEvent || undefined}
+      />
     </div>
   );
 };

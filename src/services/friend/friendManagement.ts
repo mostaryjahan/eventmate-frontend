@@ -58,10 +58,8 @@ export const getFriendRequests = async () => {
 };
 
 export const RemoveFriends = async (friendId: string) => {
-  console.log("[RemoveFriends] Removing friend/request:", friendId);
 
   const response = await serverFetch.delete(`/friends/${friendId}`);
-  console.log("[RemoveFriends] Response status:", response.status);
 
   if (!response.ok) {
     const error = await response.json();
@@ -83,7 +81,7 @@ export const getAllFriendsEvents = async () => {
     const data = await response.json();
     return { ok: response.ok, json: async () => data };
   } catch (error) {
-    return { ok: false, json: async () => ({ error: "Failed to fetch friends events" }) };
+    console.log(error);
   }
 };
 

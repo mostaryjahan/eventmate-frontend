@@ -3,26 +3,32 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { applyForHost } from "@/services/apply-for-host/applyForHost.service";
+import { applyForHost, checkHostApplicationStatus, cancelHostApplication } from "@/services/apply-for-host/applyForHost.service";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
 const HostApplicationStatus = () => {
   const [loading, setLoading] = useState(false);
+  const [canceling, setCanceling] = useState(false);
   const [hasApplied, setHasApplied] = useState(false);
 
   useEffect(() => {
-    const applied = localStorage.getItem('hostApplicationSubmitted');
-    if (applied === 'true') {
-      setHasApplied(true);
-    }
+    const checkStatus = async () => {
+      try {
+        const response = await checkHostApplicationStatus();
+        setHasApplied(response.data?.hasApplied || false);
+      } catch (error) {
+        console.error('Failed to check host application status:', error);
+      }
+    };
+    checkStatus();
   }, []);
 
   const handleBecomeHost = async () => {
     setLoading(true);
     try {
       await applyForHost();
-      localStorage.setItem('hostApplicationSubmitted', 'true');
+    
       toast.success(
         "Host application submitted successfully. Please wait for admin approval."
       );
@@ -34,11 +40,34 @@ const HostApplicationStatus = () => {
     }
   };
 
+  const handleCancelRequest = async () => {
+    setCanceling(true);
+    try {
+      await cancelHostApplication();
+      toast.success("Host application cancelled successfully.");
+      setHasApplied(false);
+    } catch (error: any) {
+      toast.error(error.message || "Failed to cancel application");
+    } finally {
+      setCanceling(false);
+    }
+  };
+
   if (hasApplied) {
     return (
-      <Badge variant="outline" className="px-4 py-2 text-sm">
-        Application Pending
-      </Badge>
+      <div className="flex items-center gap-2">
+        <Badge variant="outline" className="px-4 py-2 text-sm">
+          Application Pending
+        </Badge>
+        <Button
+          onClick={handleCancelRequest}
+          disabled={canceling}
+          variant="destructive"
+          size="sm"
+        >
+          {canceling ? "Canceling..." : "Cancel Request"}
+        </Button>
+      </div>
     );
   }
 

@@ -1,5 +1,12 @@
 import { EventTypeActions } from "@/components/modules/Dashboard/AdminDashboard/EventTypeActions";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { getAllTypes } from "@/services/admin/eventTypeManagement";
 
 import { EventType } from "@/types/event.interface";
@@ -12,24 +19,26 @@ const EventTypeManagementPage = async () => {
     <div className="p-6">
       <EventTypeActions />
       {/* table */}
-      <Table className="max-w-lg">
-        <TableHeader>
-          <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {types.map((type) => (
-            <TableRow key={type.id}>
-              <TableCell>{type.name}</TableCell>
-              <TableCell className="space-x-2">
-                <EventTypeActions eventType={type} />
-              </TableCell>
+      <div className="border rounded-md max-w-md mt-6">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {types.map((type) => (
+              <TableRow key={type.id}>
+                <TableCell>{type.name}</TableCell>
+                <TableCell className="space-x-2">
+                  <EventTypeActions eventType={type} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };

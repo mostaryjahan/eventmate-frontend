@@ -2,7 +2,7 @@ import HostRevenue from "@/components/modules/revenue/HostRevenue";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getHostedEvents } from "@/services/host/hostedEventManagement";
 import { IEvent } from "@/types/event.interface";
-import { DollarSignIcon } from "lucide-react";
+import { CalendarArrowDownIcon, DollarSignIcon, Users2 } from "lucide-react";
 
 const MyRevenuesPage = async () => {
   const result = await getHostedEvents();
@@ -12,6 +12,10 @@ const MyRevenuesPage = async () => {
     (sum, e) => sum + (e._count?.participants || 0) * parseFloat(e.joiningFee),
     0
   );
+
+  const totalEvents = events.length;
+  const totalParticipants = events.reduce((sum, e) => sum + (e._count?.participants || 0), 0);
+  const averageRevenuePerEvent = totalEvents > 0 ? totalRevenue / totalEvents : 0;
 
   return (
     <div className="space-y-6">
@@ -24,6 +28,36 @@ const MyRevenuesPage = async () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${totalRevenue.toFixed(2)}</div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Events</CardTitle>
+            <CalendarArrowDownIcon className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{totalEvents}</div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Participants</CardTitle>
+            <Users2 className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{totalParticipants}</div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Avg Revenue/Event</CardTitle>
+            <DollarSignIcon className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">${averageRevenuePerEvent.toFixed(2)}</div>
           </CardContent>
         </Card>
       </div>

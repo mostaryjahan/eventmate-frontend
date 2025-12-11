@@ -13,7 +13,6 @@ import { useState, useEffect } from "react";
 const HostManagement = () => {
   const [allUsers, setAllUsers] = useState<UserInfo[]>([]);
   const [allEvents, setAllEvents] = useState<IEvent[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,8 +25,6 @@ const HostManagement = () => {
         setAllEvents(eventResult?.data || []);
       } catch (error) {
         console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();
@@ -62,9 +59,7 @@ const HostManagement = () => {
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+ 
 
   return (
     <div className="space-y-4 rounded-md border max-w-3xl">

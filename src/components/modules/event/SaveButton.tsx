@@ -1,8 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { getUserInfo } from "@/services/auth/getUserInfo";
 import { saveEvent, unsaveEvent } from "@/services/user/userEventManagement";
-import { Bookmark, BookmarkCheck } from "lucide-react";
+import { Bookmark } from "lucide-react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
@@ -14,14 +15,33 @@ interface SaveButtonProps {
 
 export const SaveButton = ({ eventId, isSaved = false, onSaveChange }: SaveButtonProps) => {
   const [saved, setSaved] = useState(isSaved);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+  // Check user login status
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const userInfo = await getUserInfo();
+        setIsLoggedIn(!!userInfo);
+      } catch {
+        setIsLoggedIn(false);
+      }
+    };
+    checkLoginStatus();
+  }, []);
   
   // Update saved state when isSaved prop changes
   useEffect(() => {
     setSaved(isSaved);
   }, [isSaved]);
-  const [loading, setLoading] = useState(false);
 
   const handleSaveToggle = async () => {
+    if (!isLoggedIn) {
+      toast.error("Please login to save events");
+      return;
+    }
+
     setLoading(true);
     try {
       if (saved) {
@@ -40,11 +60,12 @@ export const SaveButton = ({ eventId, isSaved = false, onSaveChange }: SaveButto
           onSaveChange?.(true);
           toast.success("Event saved successfully");
         } else {
-          toast.error("Please login to save events");
+          toast.error(result.message || "Failed to save event");
         }
       }
     } catch (error) {
       toast.error("Something went wrong");
+      console.log(error)
     } finally {
       setLoading(false);
     }
@@ -54,14 +75,14 @@ export const SaveButton = ({ eventId, isSaved = false, onSaveChange }: SaveButto
     <Button
       variant="ghost"
       size="icon"
-      className="h-8 w-8 text-gray-500 hover:text-[#a11f65]"
+      className="h-10 w-10 hover:text-[#a11f65]"
       onClick={handleSaveToggle}
       disabled={loading}
     >
       {saved ? (
-        <BookmarkCheck className="w-4 h-4 fill-current" />
+        <Bookmark className="w-4 h-4 text-yellow-600 fill-yellow-600" />
       ) : (
-        <Bookmark className="w-4 h-4" />
+        <Bookmark className="w-4 h-4 text-gray-400" />
       )}
     </Button>
   );

@@ -40,7 +40,10 @@ export const getMyJoinedEvents = async () => {
 export const saveEvent = async (eventId: string) => {
   try {
     const response = await serverFetch.post("/users/save-event", {
-      eventId,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ eventId }),
     });
     const result = await response.json();
     return result;

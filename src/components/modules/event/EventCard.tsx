@@ -20,7 +20,7 @@ import { ViewParticipantsDialog } from "../participants/ViewParticipantsDialog";
 import { SaveButton } from "./SaveButton";
 
 
-export const EventCard = ({ event }: { event: IEvent & { isSaved?: boolean } }) => {
+export const EventCard = ({ event, onSaveChange }: { event: IEvent & { isSaved?: boolean }, onSaveChange?: (saved: boolean) => void }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   
   // Check if event date has passed
@@ -82,14 +82,7 @@ export const EventCard = ({ event }: { event: IEvent & { isSaved?: boolean } }) 
               </CardDescription>
             </div>
             <div className="flex gap-1">
-              <SaveButton eventId={event.id} isSaved={event.isSaved} />
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 text-gray-500 hover:text-[#a11f65]"
-              >
-                <Share2 className="w-4 h-4" />
-              </Button>
+              <SaveButton eventId={event.id} isSaved={event.isSaved} onSaveChange={onSaveChange} />
             </div>
           </div>
         </CardHeader>

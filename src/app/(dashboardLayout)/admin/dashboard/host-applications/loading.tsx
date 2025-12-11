@@ -1,6 +1,6 @@
 import { ManagementPageLoading } from "@/components/shared/ManagementPageLoader";
 
-const EventsManagementLoading = () => {
+const HostApplicationLoading = () => {
   return (
     <ManagementPageLoading
       columns={10}
@@ -11,4 +11,4 @@ const EventsManagementLoading = () => {
   );
 };
 
-export default EventsManagementLoading;
+export default HostApplicationLoading;

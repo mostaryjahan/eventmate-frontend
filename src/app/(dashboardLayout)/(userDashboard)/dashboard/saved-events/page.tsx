@@ -3,6 +3,7 @@
 import { EventCard } from "@/components/modules/event/EventCard";
 import { getSavedEvents } from "@/services/user/userEventManagement";
 import { IEvent } from "@/types/event.interface";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const SavedEventsPage = () => {
@@ -13,9 +14,16 @@ const SavedEventsPage = () => {
     const fetchSavedEvents = async () => {
       try {
         const result = await getSavedEvents();
-        setSavedEvents(result?.data || []);
+        console.log('Saved events result:', result);
+        if (result?.success) {
+          setSavedEvents(result.data || []);
+        } else {
+          console.error('Failed to fetch saved events:', result?.message);
+          setSavedEvents([]);
+        }
       } catch (error) {
         console.error('Error fetching saved events:', error);
+        setSavedEvents([]);
       } finally {
         setLoading(false);
       }
@@ -62,20 +70,27 @@ const SavedEventsPage = () => {
           <div className="text-6xl mb-4">📌</div>
           <h3 className="text-xl font-semibold mb-2">No saved events yet</h3>
           <p className="text-muted-foreground mb-4">
-            Start exploring events and save the ones you're interested in!
+            Start exploring events and save the ones you&apos;re interested in!
           </p>
-          <a
+          <Link
             href="/events"
             className="inline-flex items-center px-4 py-2 bg-[#a11f65] text-white rounded-md hover:bg-[#8a1a55] transition-colors"
           >
             Explore Events
-          </a>
+          </Link>
         </div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {savedEvents.map((event) => (
             <div key={event.id}>
-              <EventCard event={{ ...event, isSaved: true }} />
+              <EventCard 
+                event={{ ...event, isSaved: true }} 
+                onSaveChange={(saved) => {
+                  if (!saved) {
+                    handleEventRemoved(event.id);
+                  }
+                }}
+              />
             </div>
           ))}
         </div>

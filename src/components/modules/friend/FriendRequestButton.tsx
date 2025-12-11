@@ -11,6 +11,7 @@ interface FriendRequestButtonProps {
 }
 
 export function FriendRequestButton({ userId }: FriendRequestButtonProps) {
+  
   const [loading, setLoading] = useState(false);
 
   const handleSendRequest = async () => {

@@ -1,9 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getAllHostApplications } from "@/services/admin/hostApplications";
 import { HostApplication } from "@/types/hostApplication.interface";
 import { HostApplicationActions } from "@/components/HostApplicationActions";
-import { UserCheck, Clock, CheckCircle, XCircle } from "lucide-react";
+import { UserCheck, Clock, CheckCircle, XCircle, User } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const HostApplicationsPage = async () => {
   const result = await getAllHostApplications();
@@ -31,14 +32,19 @@ const HostApplicationsPage = async () => {
         </div>
       </div>
 
-      <div className="grid gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {applications.length > 0 ? (
           applications.map((application) => (
             <Card key={application.id}>
-              <CardContent className="p-6">
+              <CardContent className="">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <UserCheck className="w-10 h-10 text-blue-600" />
+                   <Avatar className="h-10 w-10 border border-primary/40">
+                      <AvatarImage src={application.user.image} />
+                      <AvatarFallback className="bg-purple-100 text-purple-600">
+                        <User className="h-5 w-5" />
+                      </AvatarFallback>
+                    </Avatar>    
                     <div>
                       <h3 className="font-semibold text-lg">{application.user.name}</h3>
                       <p className="text-muted-foreground">{application.user.email}</p>

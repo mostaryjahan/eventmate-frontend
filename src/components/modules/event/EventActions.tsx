@@ -1,54 +1,67 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDialog";
+import { Button } from "@/components/ui/button";
+import { deleteEvent } from "@/services/admin/eventManagement";
 import { deleteHostedEvent } from "@/services/host/hostedEventManagement";
 import { IEvent } from "@/types/event.interface";
-import { Pencil, Trash } from "lucide-react";
-import EventFormDialog from "./EventFormDialog"; 
+import { useState } from "react";
+
 interface EventActionsProps {
   event: IEvent;
   onEventDeleted: (eventId: string) => void;
-  onEventUpdated: () => void; 
+  onEditEvent: (event: IEvent) => void;
+  userType?: 'admin' | 'host';
 }
 
-export function EventActions({ event, onEventDeleted, onEventUpdated }: EventActionsProps) {
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [isFormDialogOpen, setIsFormDialogOpen] = useState(false); 
+export const EventActions = ({ event, onEventDeleted, onEditEvent, userType = 'host' }: EventActionsProps) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const handleDeleteConfirm = async () => {
-    const result = await deleteHostedEvent(event.id);
-    if (result.success) {
+    setIsDeleting(true);
+    try {
+      if (userType === 'admin') {
+        await deleteEvent(event.id);
+      } else {
+        await deleteHostedEvent(event.id);
+      }
       onEventDeleted(event.id);
-      setDeleteDialogOpen(false);
+    } catch (error) {
+      console.error('Failed to delete event:', error);
+    } finally {
+      setIsDeleting(false);
+      setShowDeleteDialog(false);
     }
   };
 
+  const handleEdit = () => {
+    onEditEvent(event);
+  };
+
   return (
-    <div className="flex gap-2">
-      <Button variant="outline" size="sm" onClick={() => setIsFormDialogOpen(true)}>
-        <Pencil className="h-4 w-4" />
-      </Button>
-      <Button variant="destructive" size="sm" onClick={() => setDeleteDialogOpen(true)}>
-        <Trash className="h-4 w-4" />
-      </Button>
+    <>
+      <div className="flex gap-2">
+        <Button variant="outline" size="sm" onClick={handleEdit}>
+          Edit
+        </Button>
+        <Button 
+          variant="destructive" 
+          size="sm" 
+          onClick={() => setShowDeleteDialog(true)}
+          disabled={isDeleting}
+        >
+          {isDeleting ? 'Deleting...' : 'Delete'}
+        </Button>
+      </div>
+      
       <DeleteConfirmationDialog
+        open={showDeleteDialog}
+        onOpenChange={setShowDeleteDialog}
         title="Are you sure?"
-        description="This action cannot be undone. This will permanently delete your event."
-        open={deleteDialogOpen}
-        onOpenChange={setDeleteDialogOpen}
+        description="This action cannot be undone."
         onConfirm={handleDeleteConfirm}
       />
-      <EventFormDialog
-        open={isFormDialogOpen}
-        onClose={() => setIsFormDialogOpen(false)}
-        onSuccess={() => {
-          onEventUpdated();
-          setIsFormDialogOpen(false);
-        }}
-        event={event}
-      />
-    </div>
+    </>
   );
-}
+};

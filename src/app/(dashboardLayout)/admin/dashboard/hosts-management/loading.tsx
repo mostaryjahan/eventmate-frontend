@@ -1,6 +1,6 @@
 import { ManagementPageLoading } from "@/components/shared/ManagementPageLoader";
 
-const AdminsManagementLoading = () => {
+const HostsManagementLoading = () => {
   return (
     <ManagementPageLoading
       columns={10}
@@ -11,4 +11,4 @@ const AdminsManagementLoading = () => {
   );
 };
 
-export default AdminsManagementLoading;
+export default HostsManagementLoading;

@@ -5,7 +5,7 @@ const ParticipantsManagementLoading = () => {
     <ManagementPageLoading
          columns={8}
          hasActionButton
-         filterCount={2}
+         filterCount={0}
          filterWidths={["w-48","w-36" ,"w-36", "w-36"]}
        />
   );
