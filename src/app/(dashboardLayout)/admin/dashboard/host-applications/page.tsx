@@ -26,7 +26,7 @@ const HostApplicationsPage = async () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Host Applications</h1>
+        <h1 className="text-xl md:text-3xl font-semibold">Host Applications</h1>
         <div className="text-sm text-muted-foreground">
           Total: {applications.length} applications
         </div>
@@ -39,7 +39,7 @@ const HostApplicationsPage = async () => {
               <CardContent className="">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                   <Avatar className="h-10 w-10 border border-primary/40">
+                   <Avatar className="hidden md:block h-10 w-10 border border-primary/40">
                       <AvatarImage src={application.user.image} />
                       <AvatarFallback className="bg-purple-100 text-purple-600">
                         <User className="h-5 w-5" />
@@ -54,7 +54,7 @@ const HostApplicationsPage = async () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-3">
+                  <div className="md:flex items-center gap-3">
                     {getStatusBadge(application.status)}
                     
                     <HostApplicationActions 

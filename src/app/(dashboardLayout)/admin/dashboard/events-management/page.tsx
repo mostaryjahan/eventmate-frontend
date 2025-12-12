@@ -9,8 +9,8 @@ const EventManagement = () => {
   const [refresh, setRefresh] = useState(0);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Event Management</h1>
+    <div className="px-2 md:px-6 py-6">
+      <h1 className="text-xl md:text-3xl font-semibold mb-6">Event Management</h1>
 
       <AdminEventManagement key={refresh} />
       <EventFormDialog

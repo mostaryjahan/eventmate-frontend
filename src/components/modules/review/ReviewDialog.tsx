@@ -50,7 +50,7 @@ export function ReviewDialog({ eventId, trigger }: ReviewDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        {trigger || <Button variant="outline">Leave Review</Button>}
+        {trigger || <Button className="border-primary text-primary cursor-pointer" variant="outline">Leave Review</Button>}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

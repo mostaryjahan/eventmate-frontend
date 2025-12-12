@@ -102,7 +102,7 @@ const MyEventPage = async () => {
         ) : (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {pastEvents.map((event) => (
-              <Card key={event.id} className="overflow-hidden opacity-75">
+              <Card key={event.id} className="overflow-hidden opacity-80">
                 <div className="relative h-48 w-full">
                   <Image
                     src={event.image}
@@ -130,8 +130,10 @@ const MyEventPage = async () => {
                       <span>{event.location}</span>
                     </div>
                   </div>
+                  <div className="flex justify-end mt-3">
+                    <ReviewDialog eventId={event.id} hostId={event.createdBy} />
+                  </div>
                 </CardContent>
-                <ReviewDialog eventId={event.id} hostId={event.createdBy} />
               </Card>
             ))}
           </div>

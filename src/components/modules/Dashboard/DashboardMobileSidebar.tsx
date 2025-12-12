@@ -1,5 +1,6 @@
 "use client";
 
+import Logo from "@/assets/logo/logo";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -20,22 +21,24 @@ interface DashboardMobileSidebarContentProps {
 const DashboardMobileSidebar = ({
   userInfo,
   navItems,
-  dashboardHome,
 }: DashboardMobileSidebarContentProps) => {
   const pathname = usePathname();
   return (
     <div className=" flex h-full flex-col">
       {/* Logo */}
-      <div className="flex h-16 items-center border-b px-6">
-        <Link href={dashboardHome}>
-          <span className="text-xl font-bold text-primary">EventMate</span>
+      <div className="flex h-16 border-b px-6">
+        <Link href="/" className="flex items-center">
+          <Logo />
+          <span className="text-xl font-primary font-medium text-primary">
+            EventMate
+          </span>
         </Link>
       </div>
       <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
 
       {/* Navigation */}
       <ScrollArea className="flex-1 px-3 py-4">
-        <nav className="space-y-6">
+        <nav className="space-y-1">
           {navItems.map((section, sectionIdx) => (
             <div key={sectionIdx}>
               {section.title && (

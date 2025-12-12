@@ -134,12 +134,12 @@ export const userNavItems: NavSection[] = [
                 icon: "Bookmark", 
                 roles: ["USER"],
             },
-            {
-                title: "Payments",
-                href: "/dashboard/payments",
-                icon: "ClipboardList", 
-                roles: ["USER"],
-            },
+            // {
+            //     title: "Payments",
+            //     href: "/dashboard/payments",
+            //     icon: "ClipboardList", 
+            //     roles: ["USER"],
+            // },
         ],
     },
     {

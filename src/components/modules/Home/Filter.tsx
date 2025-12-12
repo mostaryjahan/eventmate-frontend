@@ -1,5 +1,5 @@
 "use client";
-import { getAllEvents } from "@/services/admin/eventManagement";
+
 import { IEvent } from "@/types/event.interface";
 import { useEffect, useMemo, useState } from "react";
 
@@ -42,8 +42,8 @@ const Filter = ({ events, onFilterChange }: FilterProps) => {
   }, [filteredEvents, onFilterChange]);
 
   return (
-    <div className="container w-max-3xl mx-auto bg-white rounded-md shadow-lg p-8 pb-12  left-1/2">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div className="container w-max-xl mx-auto bg-white rounded-md shadow-lg p-8 pb-12  left-1/2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Location */}
         <div className="border border-primary rounded-full px-5 py-3 flex items-center">
           <input
@@ -75,11 +75,6 @@ const Filter = ({ events, onFilterChange }: FilterProps) => {
             className="w-full bg-transparent outline-none text-sm"
           />
         </div>
-
-        {/* Button */}
-        <button className="bg-primary text-white rounded-full px-6 py-3 font-medium hover:bg-[#b20f3a]">
-          Search Now
-        </button>
       </div>
     </div>
   );

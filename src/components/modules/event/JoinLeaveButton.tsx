@@ -97,7 +97,7 @@ const JoinLeaveButton = ({
       onClick={handleJoinLeave} 
       disabled={loading}
       variant={isJoined ? "destructive" : "default"}
-      className="w-full"
+      className="w-full  cursor-pointer"
     >
       {loading ? (
         "Processing..."

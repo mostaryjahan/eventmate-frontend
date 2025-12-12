@@ -31,7 +31,7 @@ const DashboardSidebarContent = ({
         <Link href="/" className="flex items-center">
         
         <Logo/>
-          <span className="text-xl font-bold text-primary">EventMate</span>
+          <span className="text-xl font-primary font-medium text-primary">EventMate</span>
         </Link>
       </div>
 

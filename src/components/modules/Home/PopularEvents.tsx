@@ -32,7 +32,7 @@ const PopularEvents = async () => {
 
         {/* View More Button */}
         <div className="text-center mt-16">
-          <Link href="/all-events">
+          <Link href="/events">
             <Button
               variant="outline"
               className="px-8 py-6 border-2 border-primary text-primary hover:border-[#a11f65] hover:text-[#a11f65] hover:bg-[#a11f65]/5 text-lg font-medium"

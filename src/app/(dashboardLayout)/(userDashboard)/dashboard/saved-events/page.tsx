@@ -40,7 +40,7 @@ const SavedEventsPage = () => {
     return (
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-semibold">Saved Events</h1>
+          <h1 className="text-lg md:text-3xl font-semibold">Saved Events</h1>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[...Array(6)].map((_, i) => (
@@ -61,7 +61,7 @@ const SavedEventsPage = () => {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-semibold">Saved Events</h1>
+        <h1 className="text-xl md:text-3xl font-semibold">Saved Events</h1>
         <p className="text-muted-foreground">{savedEvents.length} events saved</p>
       </div>
 
@@ -80,7 +80,7 @@ const SavedEventsPage = () => {
           </Link>
         </div>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {savedEvents.map((event) => (
             <div key={event.id}>
               <EventCard 

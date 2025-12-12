@@ -76,7 +76,7 @@ const HostApplicationStatus = () => {
       onClick={handleBecomeHost}
       disabled={loading}
       size="lg"
-      className="w-full md:w-auto"
+      className="w-auto cursor-pointer"
     >
       {loading ? "Processing..." : "Apply for Host"}
     </Button>

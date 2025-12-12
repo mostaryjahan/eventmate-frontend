@@ -20,7 +20,7 @@ const UserDashboardPage = async () => {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-semibold">My Dashboard</h1>
+        <h1 className="text-xl md:text-3xl font-semibold">My Dashboard</h1>
         <HostApplicationStatus />
       </div>
 

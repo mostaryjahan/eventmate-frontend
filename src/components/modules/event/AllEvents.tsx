@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { IEvent } from "@/types/event.interface";
 import { getAllEvents } from "@/services/admin/eventManagement";
 import { EventCard } from "./EventCard";
@@ -12,16 +13,27 @@ import bg from "../../../assets/home/img-1.jpg";
 const AllEvents = () => {
   const [events, setEvents] = useState<IEvent[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<IEvent[]>([]);
+  const searchParams = useSearchParams();
+  const categoryFilter = searchParams.get('category');
 
   useEffect(() => {
     const fetchEvents = async () => {
       const result = await getAllEvents();
       const eventsData = result?.data || [];
       setEvents(eventsData);
-      setFilteredEvents(eventsData);
+      
+      // Apply category filter if present
+      if (categoryFilter) {
+        const filtered = eventsData.filter((event: IEvent) => 
+          event.type?.name === categoryFilter
+        );
+        setFilteredEvents(filtered);
+      } else {
+        setFilteredEvents(eventsData);
+      }
     };
     fetchEvents();
-  }, []);
+  }, [categoryFilter]);
 
   return (
     <div className="bg-linear-to-b from-gray-50 to-white min-h-screen">
@@ -33,8 +45,8 @@ const AllEvents = () => {
       <div className="container mx-auto px-4">
        
 
-        <div className="mb-8">
-          <Filter events={events} onFilterChange={setFilteredEvents} />
+        <div className="mb-8 max-w-4xl mx-auto">
+          <Filter events={categoryFilter ? filteredEvents : events} onFilterChange={setFilteredEvents} />
         </div>
 
         {/* Events Grid */}

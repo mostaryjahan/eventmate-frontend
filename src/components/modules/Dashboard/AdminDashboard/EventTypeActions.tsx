@@ -28,7 +28,7 @@ export function EventTypeActions({ eventType }: { eventType?: EventType }) {
   if (!eventType) {
     return (
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Event Type Management</h1>
+        <h1 className="text-xl md:text-3xl font-semibold">Event Type Management</h1>
         <EventTypeDialog onSuccess={handleSuccess} />
       </div>
     );

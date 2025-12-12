@@ -45,16 +45,7 @@ export default async function BookEventPage({ params }: { params: Promise<{ id: 
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-
-            <Card className="mt-6">
-              <CardHeader>
-                <CardTitle>Payment Information</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">Payment stripe</p>
-                <BookEventButton eventId={event.id} />
+                 <BookEventButton eventId={event.id} />
               </CardContent>
             </Card>
           </div>
@@ -62,7 +53,7 @@ export default async function BookEventPage({ params }: { params: Promise<{ id: 
           <div>
             <Card className="sticky top-6">
               <CardHeader>
-                <CardTitle>Price Details</CardTitle>
+                <CardTitle>Amount Details</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">

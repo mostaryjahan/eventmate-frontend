@@ -36,7 +36,6 @@ const EventForm = ({ event }: IEventFormProps) => {
   const isEditMode = !!event;
  const [typeId, setTypeId] = useState(event?.type?.id || "");
 
-  // const initialTypeId = useMemo(() => event?.type.id || "", [event?.type.id]);
 
   const formActionFn = isEditMode
     ? async (prevState: any, formData: FormData) => {

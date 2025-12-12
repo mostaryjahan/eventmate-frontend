@@ -28,7 +28,7 @@ export const BookEventButton = ({ eventId }: { eventId: string }) => {
   return (
     <Button
       onClick={handlePayment}
-      className="w-full bg-gradient-to-r from-[#a11f65] to-purple-600"
+      className="w-full bg-green-600 hover:bg-green-400 text-white cursor-pointer"
     >
       <CreditCard className="w-4 h-4 mr-2" />
       Proceed to Payment
