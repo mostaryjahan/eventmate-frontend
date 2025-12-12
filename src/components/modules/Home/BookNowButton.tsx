@@ -22,7 +22,8 @@ export const BookNowButton = ({ eventId, disabled = false }: { eventId: string; 
     <Button 
       onClick={handleBookNow}
       disabled={disabled}
-      className={`w-full shadow-md hover:shadow-lg transition-all ${
+      size="lg"
+      className={`w-full shadow-md hover:shadow-lg transition-all px-5 ${
         disabled 
           ? "bg-primary/90 cursor-not-allowed" 
           : "bg-primary hover:to-purple-700"

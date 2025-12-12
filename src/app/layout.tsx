@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Playfair, Roboto } from "next/font/google";
+import { Roboto, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import LoginSuccessToast from "@/components/shared/LoginSuccessToast";
 import LogoutSuccessToast from "@/components/shared/LogoutSuccessToast";
 import { Suspense } from "react";
 
-const primary = Playfair({
+const primary = Roboto_Slab({
   variable: "--font-primary",
   subsets: ["latin"],
 });

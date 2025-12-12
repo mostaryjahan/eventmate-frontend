@@ -1,5 +1,5 @@
 import PageHeader from "@/components/shared/PageHeader";
-import aboutBg from "../../../assets/home/img-2.jpg";
+import aboutBg from "../../../assets/home/img-3.jpg";
 
 const AboutHero = () => {
   return (

@@ -102,21 +102,21 @@ const ContactForm = ({
 
   // Default variant
   return (
-    <Card className={`border-0 shadow-xl overflow-hidden max-w-xl ${className}`}>
+    <Card className={`border-0 shadow overflow-hidden max-w-xl ${className}`}>
       {showTitle && (
         <CardHeader className="">
-          <CardTitle className="text-2xl flex items-center gap-2">
+          <CardTitle className="text-2xl flex items-center gap-2 font-primary">
             <Send className="w-6 h-6" />
             {title}
           </CardTitle>
-          <CardDescription className="text-white/90">
+          <CardDescription className="text-gray-600 font-secondary">
             {description}
           </CardDescription>
         </CardHeader>
       )}
       
-      <CardContent className={`${showTitle ? 'pt-8' : 'pt-6'}`}>
-        <form onSubmit={handleSubmit} className="space-y-6">
+      <CardContent className={`${showTitle ? 'pt-2' : 'pt-2'}`}>
+        <form onSubmit={handleSubmit} className="space-y-4 font-secondary">
           <div className="grid md:grid-cols-2 gap-6">
             {/* Name Field */}
             <div className="space-y-2">
@@ -193,7 +193,7 @@ const ContactForm = ({
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-12 bg-gradient-to-r from-[#a11f65] to-purple-600 hover:from-[#8a1a55] hover:to-purple-700 text-white text-lg font-medium shadow-lg hover:shadow-xl transition-all"
+            className="w-full h-12 hover:from-[#8a1a55] hover:to-purple-700 text-white text-lg font-medium shadow hover:shadow-xl transition-all"
           >
             {isSubmitting ? (
               <>

@@ -50,7 +50,7 @@ export default async function EventPage({
        const isEventPassed = new Date(event.dateTime) < new Date();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white py-12 text-secondary">
       <div className="container mx-auto px-4 max-w-5xl">
         <Card className="overflow-hidden border-0 shadow-xl">
           <div className="relative h-96">
@@ -60,7 +60,7 @@ export default async function EventPage({
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
             <div className="absolute bottom-6 left-6">
               <div className="flex gap-2 mb-3">
                 <Badge className="bg-[#a11f65] text-white">
@@ -80,7 +80,7 @@ export default async function EventPage({
                   {event.status}
                 </Badge>
               </div>
-              <h1 className="text-4xl font-bold text-white mb-2">
+              <h1 className="text-3xl font-medium font-primary text-white mb-2">
                 {event.name}
               </h1>
               <p className="text-white/90 flex items-center gap-2">
@@ -90,13 +90,17 @@ export default async function EventPage({
             </div>
           </div>
 
-          <CardContent className="p-8">
+          <CardContent className="p-8 -mt-6">
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
                 <Calendar className="w-5 h-5 text-[#a11f65]" />
                 <div>
                   <p className="text-sm text-gray-600">Date & Time</p>
-                  <p className="font-semibold">{event.dateTime}</p>
+                  <p className="font-semibold">  {new Date(event.dateTime).toLocaleString("en-BD", {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                })}</p>
+                
                 </div>
               </div>
               <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
@@ -127,8 +131,8 @@ export default async function EventPage({
             </div>
 
             <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-4">About This Event</h2>
-              <p className="text-gray-700 leading-relaxed">
+              <h2 className="text-2xl font-semibold ">About This Event</h2>
+              <p className="text-gray-700 leading-relaxed font-secondary">
                 {event.description}
               </p>
             </div>

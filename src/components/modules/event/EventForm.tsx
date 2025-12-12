@@ -18,7 +18,7 @@ import {
   updateHostedEvent,
 } from "@/services/host/hostedEventManagement";
 import { getAllTypes } from "@/services/admin/eventTypeManagement";
-import { useActionState, useEffect, useMemo, useRef, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { IEvent } from "@/types/event.interface";
 import { useRouter } from "next/navigation";
@@ -30,11 +30,13 @@ interface IEventFormProps {
 const EventForm = ({ event }: IEventFormProps) => {
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
-  const [eventTypes, setEventTypes] = useState<{ id: string; name: string }[]>([]);
+  const [eventTypes, setEventTypes] = useState<{ id: string; name: string }[]>(
+    []
+  );
   const isEditMode = !!event;
-  const [typeId, setTypeId] = useState("");
+ const [typeId, setTypeId] = useState(event?.type?.id || "");
 
-  const initialTypeId = useMemo(() => event?.type.id || "", [event?.type.id]);
+  // const initialTypeId = useMemo(() => event?.type.id || "", [event?.type.id]);
 
   const formActionFn = isEditMode
     ? async (prevState: any, formData: FormData) => {
@@ -54,9 +56,9 @@ const EventForm = ({ event }: IEventFormProps) => {
     fetchTypes();
   }, []);
 
-  useEffect(() => {
-    setTypeId(initialTypeId);
-  }, [initialTypeId]);
+  // useEffect(() => {
+  //   setTypeId(initialTypeId);
+  // }, [initialTypeId]);
 
   useEffect(() => {
     if (state?.success) {
@@ -78,170 +80,178 @@ const EventForm = ({ event }: IEventFormProps) => {
   }, [state, router, isEditMode]);
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold">
-          {isEditMode ? "Edit Event" : "Create New Event"}
-        </h1>
-        <p className="text-muted-foreground mt-2">
-          {isEditMode ? "Update your event details" : "Fill in the details to create your event"}
-        </p>
-      </div>
-
-      <form
-        ref={formRef}
-        action={formAction}
-        className="space-y-6"
-        onSubmit={(e) => {
-          if (!typeId) {
-            e.preventDefault();
-            toast.error("Please select an event type");
-            return;
-          }
-          
-          // Ensure all required fields are present
-          const formData = new FormData(e.currentTarget);
-          if (!formData.get('typeId')) {
-            formData.set('typeId', typeId);
-          }
-        }}
-      >
-        <FieldGroup className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Field>
-            <FieldLabel htmlFor="name">Event Name</FieldLabel>
-            <Input
-              id="name"
-              name="name"
-              type="text"
-              required
-              defaultValue={event?.name}
-            />
-            <InputFieldError field="name" state={state} />
-          </Field>
-          
-          <Field>
-            <FieldLabel htmlFor="typeId">Event Type</FieldLabel>
-            <Select value={typeId} onValueChange={setTypeId}>
-              <SelectTrigger className="w-full" id="typeId">
-                <SelectValue placeholder="Select event type" />
-              </SelectTrigger>
-              <SelectContent>
-                {eventTypes.map((type) => (
-                  <SelectItem key={type.id} value={type.id}>
-                    {type.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {typeId && <input type="hidden" name="typeId" value={typeId} />}
-            <InputFieldError field="typeId" state={state} />
-          </Field>
-
-          <Field>
-            <FieldLabel htmlFor="dateTime">Date & Time</FieldLabel>
-            <Input
-              id="dateTime"
-              name="dateTime"
-              type="datetime-local"
-              required
-              defaultValue={
-                event
-                  ? new Date(event.dateTime).toISOString().slice(0, 16)
-                  : ""
-              }
-            />
-            <InputFieldError field="dateTime" state={state} />
-          </Field>
-          
-          <Field>
-            <FieldLabel htmlFor="location">Location</FieldLabel>
-            <Input
-              id="location"
-              name="location"
-              type="text"
-              required
-              defaultValue={event?.location}
-            />
-            <InputFieldError field="location" state={state} />
-          </Field>
-
-          <Field>
-            <FieldLabel htmlFor="minParticipants">Min Participants</FieldLabel>
-            <Input
-              id="minParticipants"
-              name="minParticipants"
-              type="number"
-              required
-              defaultValue={event?.minParticipants}
-            />
-            <InputFieldError field="minParticipants" state={state} />
-          </Field>
-          
-          <Field>
-            <FieldLabel htmlFor="maxParticipants">Max Participants</FieldLabel>
-            <Input
-              id="maxParticipants"
-              name="maxParticipants"
-              type="number"
-              required
-              defaultValue={event?.maxParticipants}
-            />
-            <InputFieldError field="maxParticipants" state={state} />
-          </Field>
-          
-          <Field>
-            <FieldLabel htmlFor="joiningFee">Joining Fee ($)</FieldLabel>
-            <Input
-              id="joiningFee"
-              name="joiningFee"
-              type="number"
-              step="0.01"
-              required
-              defaultValue={event?.joiningFee}
-            />
-            <InputFieldError field="joiningFee" state={state} />
-          </Field>
-          
-          <Field>
-            <FieldLabel htmlFor="image">Event Image</FieldLabel>
-            <Input id="image" name="image" type="file" accept="image/*" />
-            <InputFieldError field="image" state={state} />
-          </Field>
-        </FieldGroup>
-
-        <Field>
-          <FieldLabel htmlFor="description">Description</FieldLabel>
-          <Textarea
-            id="description"
-            name="description"
-            required
-            rows={4}
-            defaultValue={event?.description}
-          />
-          <InputFieldError field="description" state={state} />
-        </Field>
-
-        <div className="flex justify-end gap-4 pt-6">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => router.back()}
-            disabled={isPending}
-          >
-            Cancel
-          </Button>
-          <Button type="submit" disabled={isPending}>
-            {isPending
-              ? isEditMode
-                ? "Updating..."
-                : "Creating..."
-              : isEditMode
-              ? "Update Event"
-              : "Create Event"}
-          </Button>
+    <section className=" p-6 font-secondary bg-linear-to-r from-[#f8ebed] to-[#f8e6ef] py-10">
+      <div className="max-w-3xl mx-auto">
+        <div className="mb-6 ">
+          <h1 className="text-3xl font-medium font-primary">
+            {isEditMode ? "Edit Event" : "Create New Event"}
+          </h1>
+          <p className="text-muted-foreground mt-2">
+            {isEditMode
+              ? "Update your event details"
+              : "Fill in the details to create your event"}
+          </p>
         </div>
-      </form>
-    </div>
+
+        <form
+          ref={formRef}
+          action={formAction}
+          className="space-y-2 border p-6 rounded-md shadow-md mb-16 bg-white"
+          onSubmit={(e) => {
+            if (!typeId) {
+              e.preventDefault();
+              toast.error("Please select an event type");
+              return;
+            }
+
+            // Ensure all required fields are present
+            const formData = new FormData(e.currentTarget);
+            if (!formData.get("typeId")) {
+              formData.set("typeId", typeId);
+            }
+          }}
+        >
+          <FieldGroup className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Field>
+              <FieldLabel htmlFor="name">Event Name</FieldLabel>
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                required
+                defaultValue={event?.name}
+              />
+              <InputFieldError field="name" state={state} />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="typeId">Event Type</FieldLabel>
+              <Select value={typeId} onValueChange={setTypeId}>
+                <SelectTrigger className="w-full" id="typeId">
+                  <SelectValue placeholder="Select event type" />
+                </SelectTrigger>
+                <SelectContent>
+                  {eventTypes.map((type) => (
+                    <SelectItem key={type.id} value={type.id}>
+                      {type.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {typeId && <input type="hidden" name="typeId" value={typeId} />}
+              <InputFieldError field="typeId" state={state} />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="dateTime">Date & Time</FieldLabel>
+              <Input
+                id="dateTime"
+                name="dateTime"
+                type="datetime-local"
+                required
+                defaultValue={
+                  event
+                    ? new Date(event.dateTime).toISOString().slice(0, 16)
+                    : ""
+                }
+              />
+              <InputFieldError field="dateTime" state={state} />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="location">Location</FieldLabel>
+              <Input
+                id="location"
+                name="location"
+                type="text"
+                required
+                defaultValue={event?.location}
+              />
+              <InputFieldError field="location" state={state} />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="minParticipants">
+                Min Participants
+              </FieldLabel>
+              <Input
+                id="minParticipants"
+                name="minParticipants"
+                type="number"
+                required
+                defaultValue={event?.minParticipants}
+              />
+              <InputFieldError field="minParticipants" state={state} />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="maxParticipants">
+                Max Participants
+              </FieldLabel>
+              <Input
+                id="maxParticipants"
+                name="maxParticipants"
+                type="number"
+                required
+                defaultValue={event?.maxParticipants}
+              />
+              <InputFieldError field="maxParticipants" state={state} />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="joiningFee">Joining Fee ($)</FieldLabel>
+              <Input
+                id="joiningFee"
+                name="joiningFee"
+                type="number"
+                step="0.01"
+                required
+                defaultValue={event?.joiningFee}
+              />
+              <InputFieldError field="joiningFee" state={state} />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="image">Event Image</FieldLabel>
+              <Input id="image" name="image" type="file" accept="image/*" />
+              <InputFieldError field="image" state={state} />
+            </Field>
+          </FieldGroup>
+
+          <Field>
+            <FieldLabel htmlFor="description">Description</FieldLabel>
+            <Textarea
+              id="description"
+              name="description"
+              required
+              rows={4}
+              defaultValue={event?.description}
+            />
+            <InputFieldError field="description" state={state} />
+          </Field>
+
+          <div className="flex justify-end gap-4 pt-6">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => router.back()}
+              disabled={isPending}
+            >
+              Cancel
+            </Button>
+            <Button type="submit" disabled={isPending}>
+              {isPending
+                ? isEditMode
+                  ? "Updating..."
+                  : "Creating..."
+                : isEditMode
+                ? "Update Event"
+                : "Create Event"}
+            </Button>
+          </div>
+        </form>
+      </div>
+    </section>
   );
 };
 

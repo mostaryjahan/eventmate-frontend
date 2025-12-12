@@ -28,14 +28,14 @@ const ContactInfo = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      content: "+1 (555) 123-4567",
+      content: "+880182382191",
       description: "Mon-Fri, 9AM-6PM EST",
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Office",
       content: "123 Event Street",
-      description: "New York, NY 10001",
+      description: "Dhaka, Bangladesh",
     },
     {
       icon: <Clock className="w-6 h-6" />,
@@ -54,10 +54,10 @@ const ContactInfo = () => {
 
   return (
     <div className="max-w-xl mx-auto space-y-8">
-      <Card className="border-0 shadow-lg">
+      <Card className="border-0 shadow">
         <CardHeader>
-          <CardTitle className="text-2xl">Contact Information</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-2xl font-primary">Contact Information</CardTitle>
+          <CardDescription className="font-secondary"> 
             Choose your preferred method to reach us
           </CardDescription>
         </CardHeader>
@@ -70,7 +70,7 @@ const ContactInfo = () => {
               <div className="p-3 rounded-xl bg-[#a11f65]/10 text-[#a11f65]">
                 {info.icon}
               </div>
-              <div>
+              <div className="font-secondary">
                 <h3 className="font-semibold text-gray-900">{info.title}</h3>
                 <p className="text-gray-900 font-medium">{info.content}</p>
                 <p className="text-sm text-gray-500 mt-1">{info.description}</p>
@@ -81,7 +81,7 @@ const ContactInfo = () => {
       </Card>
 
       {/* Social Links */}
-      <Card className="border-0 shadow-lg">
+      <Card className="border-0 shadow font-secondary">
         <CardHeader>
           <CardTitle>Follow Us</CardTitle>
           <CardDescription>Stay updated with our latest events</CardDescription>

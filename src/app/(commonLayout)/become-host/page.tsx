@@ -1,7 +1,9 @@
 import ApplyForHost from "@/components/modules/ApplyForHost/ApplyForHost";
+import PageHeader from "@/components/shared/PageHeader";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
+import aboutBg from "../../../assets/home/img-3.jpg";
 
 export default function BecomeHostPage() {
   const benefits = [
@@ -14,16 +16,25 @@ export default function BecomeHostPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Become a Host</h1>
-          <p className="text-xl text-muted-foreground">
-            Share your passion and create memorable experiences
-          </p>
-        </div>
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
+      <PageHeader
+        title="Want to Become A Host?"
+        path="Become a Host"
+        bgImage={aboutBg.src}
+      />
+      <div className="container mx-auto px-4 max-w-4xl my-20">
+        <h1 className="text-2xl font-primary font-medium mb-2">
+          Start Hosting Your Own Events
+        </h1>
 
-        <Card className="mb-8">
+        <p className="text-gray-700 font-secondary mb-8">
+          Turn your ideas into real experiences. Create events, manage
+          attendees, and grow your community using EventMate’s powerful hosting
+          tools. Start building your presence and share what you love with the
+          world.
+        </p>
+
+        <Card className="mb-8 font-secondary">
           <CardHeader>
             <CardTitle>Host Benefits</CardTitle>
           </CardHeader>
@@ -39,7 +50,7 @@ export default function BecomeHostPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="font-secondary">
           <CardHeader>
             <CardTitle>Ready to Get Started?</CardTitle>
           </CardHeader>

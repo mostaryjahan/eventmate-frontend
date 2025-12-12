@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { logoutUser } from "@/services/auth/logout";
 import { UserInfo } from "@/types/user.interface";
-import { Settings, User } from "lucide-react";
+import { LayoutDashboardIcon, Settings, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,9 +21,9 @@ interface UserDropdownProps {
 }
 
 const UserDropdown = ({ userInfo }: UserDropdownProps) => {
-  const handleLogout = async () => {
-    await logoutUser();
-  };
+  // const handleLogout = async () => {
+  //   await logoutUser();
+  // };
 
   return (
     <DropdownMenu>
@@ -58,31 +58,29 @@ const UserDropdown = ({ userInfo }: UserDropdownProps) => {
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium">{userInfo.name}</p>
             <p className="text-xs text-muted-foreground">{userInfo.email}</p>
-            <p className="text-xs text-primary capitalize">
-              {userInfo.role.toLowerCase()}
-            </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+         <DropdownMenuItem asChild>
+          <Link href={"/dashboard"} className="cursor-pointer">
+            <LayoutDashboardIcon className="mr-2 h-4 w-4" />
+            Dashboard
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href={"/my-profile"} className="cursor-pointer">
             <User className="mr-2 h-4 w-4" />
             Profile
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href={"/change-password"} className="cursor-pointer">
-            <Settings className="mr-2 h-4 w-4" />
-            Change Password
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem
+        
+        
+        {/* <DropdownMenuItem
           onClick={handleLogout}
           className="cursor-pointer text-red-600"
         >
           <LogoutButton />
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   );

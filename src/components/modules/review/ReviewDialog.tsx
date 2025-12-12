@@ -14,7 +14,7 @@ interface ReviewDialogProps {
   trigger?: React.ReactNode;
 }
 
-export function ReviewDialog({ eventId, hostId, trigger }: ReviewDialogProps) {
+export function ReviewDialog({ eventId, trigger }: ReviewDialogProps) {
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
