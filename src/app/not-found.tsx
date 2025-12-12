@@ -19,7 +19,7 @@ function NotFoundContent() {
 
             {/* 404 Text */}
             <div className="relative z-10 flex h-48 w-48 items-center justify-center">
-              <h1 className="text-8xl font-bold text-primary fade-up-delay-1">
+              <h1 className="text-8xl font-semibold font-primary text-primary fade-up-delay-1">
                 404
               </h1>
             </div>
@@ -31,7 +31,7 @@ function NotFoundContent() {
           </div>
         </div>{" "}
         <div className="space-y-4 fade-up-delay-2">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight">
             Page Not Found
           </h2>
           <p className="text-lg text-muted-foreground max-w-md">

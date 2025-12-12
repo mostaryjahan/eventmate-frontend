@@ -77,7 +77,7 @@ const PaymentSuccessContent = () => {
                 Payment Successful!
               </h1>
               <p className="text-green-700">
-                Your appointment has been confirmed and payment received.
+                Your event booking has been confirmed and payment received.
               </p>
             </div>
 
@@ -85,13 +85,13 @@ const PaymentSuccessContent = () => {
             <div className="bg-green-50 rounded-lg p-4 border border-green-200">
               <p className="text-sm text-green-800">
                 A confirmation email has been sent to your registered email
-                address with appointment details.
+                address with event details.
               </p>
             </div>
 
             {/* Countdown */}
             <div className="text-sm text-green-600">
-              Redirecting to your appointments in {countdown} seconds...
+              Redirecting to your bookings in {countdown} seconds...
             </div>
 
             {/* Action Button */}
@@ -100,7 +100,7 @@ const PaymentSuccessContent = () => {
               className="w-full bg-green-600 hover:bg-green-700"
               size="lg"
             >
-              View My Booking
+              View My Booking Event
             </Button>
           </div>
         </CardContent>

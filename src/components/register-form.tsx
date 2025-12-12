@@ -23,7 +23,7 @@ const RegisterForm = () => {
   return (
     <form action={formAction}>
       <FieldGroup>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-secondary">
           {/* Name */}
           <Field>
             <FieldLabel htmlFor="name">Full Name</FieldLabel>
@@ -63,7 +63,7 @@ const RegisterForm = () => {
             <InputFieldError field="password" state={state} />
           </Field>
         </div>
-        <FieldGroup className="mt-4">
+        <FieldGroup className="mt-4 mb-4">
           <Field>
             <Button type="submit" disabled={isPending}>
               {isPending ? "Creating Account..." : "Create Account"}

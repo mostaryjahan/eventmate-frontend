@@ -33,9 +33,9 @@ const QuickLogin = () => {
 
   return (
 
-      <div className="bg-linear-to-br from-blue-50 to-indigo-50">
-        <div className="flex flex-col  justify-center mt-4">
-          <div className="space-y-4">
+      <div className="bg-primary/5">
+        <div className="flex flex-col  justify-center mt-4 mb-4">
+          <div className="space-y-6">
             {/* Admin Login Button */}
             <Button
               type="button"

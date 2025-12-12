@@ -77,7 +77,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="pl-8 md:pl-2">
+          <div className="pl-8 md:pl-16">
             <h3 className="text-lg font-semibold mb-1 border-primary">
               Quick Links
             </h3>
@@ -89,7 +89,7 @@ const Footer = () => {
                   <Link href="/events"> Our Events</Link>
                 </li>
                 <li>
-                  <Link href="/about"> About EventMate</Link>
+                  <Link href="/about"> About Us</Link>
                 </li>
                 <li>
                   <Link href="/become-host"> Become a Host</Link>

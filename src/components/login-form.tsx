@@ -22,7 +22,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
     <form action={formAction}>
       {redirect && <input type="hidden" name="redirect" value={redirect} />}
       <FieldGroup>
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-3 font-secondary">
           {/* Email */}
           <Field>
             <FieldLabel htmlFor="email">Email</FieldLabel>
@@ -50,7 +50,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
             <InputFieldError field="password" state={state} />
           </Field>
         </div>
-        <FieldGroup className="mt-4">
+        <FieldGroup className="">
           <Field>
             <Button type="submit" disabled={isPending}>
               {isPending ? "Logging in..." : "Login"}
@@ -60,14 +60,6 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
               Don&apos;t have an account?{" "}
               <a href="/register" className="text-blue-600 hover:underline">
                 Sign up
-              </a>
-            </FieldDescription>
-            <FieldDescription className="px-6 text-center">
-              <a
-                href="/forget-password"
-                className="text-blue-600 hover:underline"
-              >
-                Forgot password?
               </a>
             </FieldDescription>
           </Field>
