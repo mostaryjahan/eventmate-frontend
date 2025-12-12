@@ -35,7 +35,7 @@ const PopularEvents = async () => {
           <Link href="/all-events">
             <Button
               variant="outline"
-              className="px-8 py-6 border-2 border-primary text-gray-700 hover:border-[#a11f65] hover:text-[#a11f65] hover:bg-[#a11f65]/5 text-lg font-medium"
+              className="px-8 py-6 border-2 border-primary text-primary hover:border-[#a11f65] hover:text-[#a11f65] hover:bg-[#a11f65]/5 text-lg font-medium"
             >
               View All Events
             </Button>

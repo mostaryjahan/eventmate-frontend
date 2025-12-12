@@ -18,10 +18,10 @@ const EventCategories = async() => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-medium font-primary text-gray-900 mb-3">
             Browse Events by Category
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 font-secondary max-w-2xl mx-auto">
             Discover amazing events across different categories and find what interests you most
           </p>
         </div>

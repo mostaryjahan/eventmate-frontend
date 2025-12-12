@@ -32,23 +32,23 @@ const TopRatedHosts = async () => {
       {
         id: 1,
         name: "Sarah Johnson",
-        location: "New York, NY",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+        location: "Dhaka, Bangladesh",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
         rating: 4.9
       },
       {
         id: 2,
         name: "Michael Chen",
-        location: "San Francisco, CA",
+        location: "Dhaka, Bangladesh",
         image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
         rating: 4.8
       },
       {
         id: 3,
         name: "Emily Rodriguez",
-        location: "Los Angeles, CA",
+        location: "Dhaka, Bangladesh",
         image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-        rating: 4.9
+        rating: 5
       }
     ];
   }
@@ -57,13 +57,13 @@ const TopRatedHosts = async () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Top Rated Hosts</h2>
-          <p className="text-muted-foreground">Meet our most trusted event organizers</p>
+          <h2 className="text-3xl font-primary font-medium mb-3">Top Rated Hosts</h2>
+          <p className="text-gray-600 font-secondary">Meet our most trusted event organizers</p>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {hosts.map((host: any) => (
             <Link key={host.id} href={`/profile/${host.id}`}>
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer font-secondary">
                 <CardContent className="pt-6">
                   <div className="flex flex-col items-center text-center">
                     <Avatar className="w-20 h-20 mb-4">

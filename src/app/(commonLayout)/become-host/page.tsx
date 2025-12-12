@@ -50,16 +50,18 @@ export default function BecomeHostPage() {
           </CardContent>
         </Card>
 
-        <Card className="font-secondary">
+        <Card className="font-secondary mb-10">
           <CardHeader>
             <CardTitle>Ready to Get Started?</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="mb-6 text-muted-foreground">
+            <p className="mb-4 text-muted-foreground">
               Upgrade your account to host status and start creating events
               today. You&apos;ll get access to all host features immediately.
             </p>
-            <ApplyForHost />
+            <div className="flex justify-end">
+              <ApplyForHost />
+            </div>
           </CardContent>
         </Card>
       </div>

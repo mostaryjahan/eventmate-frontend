@@ -6,7 +6,6 @@ import {
   LinkedinIcon,
   Mail,
   MapPinIcon,
-  MapPinOffIcon,
   PhoneCall,
 } from "lucide-react";
 import Link from "next/link";
@@ -17,7 +16,7 @@ const Footer = () => {
       {/* Curve Top */}
       <div className="sm:block hidden  absolute -top-6 left-1/2 -translate-x-1/2 w-[450px] h-[50%] bg-[#1C1C1C] rounded-t-full"></div>
 
-      <footer className="relative z-10 pt-14 pb-10 px-6 md:px-12 lg:px-14">
+      <footer className="relative z-10 pt-14 pb-10 px-6 md:px-12 lg:px-14 font-secondary">
         {/* Logo Section */}
         <div className="flex justify-center mb-12">
           <div className="text-center">
@@ -78,7 +77,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="pl-8">
+          <div className="pl-8 md:pl-2">
             <h3 className="text-lg font-semibold mb-1 border-primary">
               Quick Links
             </h3>
@@ -93,7 +92,7 @@ const Footer = () => {
                   <Link href="/about"> About EventMate</Link>
                 </li>
                 <li>
-                  <Link href="/become-a-host"> Become a Host</Link>
+                  <Link href="/become-host"> Become a Host</Link>
                 </li>
 
                 <li>

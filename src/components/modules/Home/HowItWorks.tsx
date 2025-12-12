@@ -1,7 +1,6 @@
 // app/components/HowItWorks.tsx
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { UserPlus, Search, Rocket, ArrowRight } from "lucide-react";
+import { UserPlus, Search, Rocket } from "lucide-react";
 
 type Step = {
   number: number;
@@ -14,19 +13,22 @@ const steps: Step[] = [
   {
     number: 1,
     title: "Sign Up",
-    description: "Create an account in just a few clicks to get started.",
+    description:
+      "Create your account in a few simple steps and unlock access to all our event tools.",
     icon: UserPlus,
   },
   {
     number: 2,
     title: "Choose Service",
-    description: "Select the service that best fits your needs.",
+    description:
+      "Browse through our available services and pick the one that matches your event needs.",
     icon: Search,
   },
   {
     number: 3,
     title: "Get Started",
-    description: "Start using our platform and enjoy seamless experience.",
+    description:
+      "Begin managing your event with ease and enjoy a smooth, hassle-free experience.",
     icon: Rocket,
   },
 ];
@@ -39,52 +41,36 @@ export default function HowItWorks() {
       
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4 px-4 py-2 text-sm font-medium">
-            Simple Process
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-semibold bg-black bg-clip-text text-transparent mb-4">
+        
+          <h2 className="text-3xl md:text-4xl font-medium font-primary bg-black bg-clip-text text-transparent mb-3">
             How It Works
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg font-secondary text-slate-600 max-w-2xl mx-auto">
             Get started with EventMate in three simple steps and transform your event experience
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 relative">
-          {steps.map((step, index) => {
+          {steps.map((step) => {
             const Icon = step.icon;
             return (
               <div key={step.number} className="relative group">
-                {/* Connection line */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-20 left-full w-full z-0">
-                    <div className="flex items-center justify-center h-0.5">
-                      <div className="flex-1 h-px bg-gradient-to-r from-blue-200 to-blue-300" />
-                      <ArrowRight className="w-4 h-4 text-blue-400 mx-2" />
-                      <div className="flex-1 h-px bg-primary" />
-                    </div>
-                  </div>
-                )}
+               
 
-                <Card className="relative border-0 shadow-xl bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 z-10">
-                  <CardHeader className="flex flex-col items-center pb-4">
-                    <div className="relative mb-4">
-                      <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <Icon className="w-8 h-8 text-white" />
+                <Card className="relative bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1 z-10">
+                  <CardHeader className="flex flex-col items-center pb-1">
+                    <div className="relative mb-4 py-2">
+                      <div className="w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="w-8 h-8 text-primary" />
                       </div>
-                      <Badge 
-                        variant="secondary" 
-                        className="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-r from-slate-800 to-slate-700 text-white border-2 border-white shadow-md"
-                      >
-                        {step.number}
-                      </Badge>
+                     
                     </div>
-                    <CardTitle className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                    <CardTitle className="text-xl font-bold text-slate-800 group-hover:text-primary transition-colors font-secondary -mt-8">
                       {step.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="text-center">
-                    <p className="text-slate-600 leading-relaxed">
+                    <p className="text-slate-600 leading-relaxed group-hover:text-primary transition-colors font-secondary -mt-4 mb-4">
                       {step.description}
                     </p>
                   </CardContent>

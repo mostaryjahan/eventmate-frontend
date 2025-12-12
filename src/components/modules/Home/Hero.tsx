@@ -10,8 +10,7 @@ const Hero = () => {
   return (
     <section className="relative bg-linear-to-r from-[#F7DADF] to-[#F4E4EA] overflow-hidden pb-8">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-20">
-      
-        <div className="space-y-4">
+        <div className="space-y-2">
           {/* Date */}
           <div className="flex items-center gap-2 text-primary font-primary">
             <span>
@@ -27,9 +26,9 @@ const Hero = () => {
             EVENTS, MEETUPS & <br />
             <span className="text-primary">CONFERENCES</span>
           </h1>
-
+          <p className="text-gray-700 font-medium">Making Events Simpler</p>
           {/* Details Row */}
-          <div className="flex flex-wrap gap-6 text-gray-700 text-sm font-medium font-secondary pt-3">
+          <div className="flex flex-wrap gap-6 text-gray-700 text-sm font-medium font-secondary pt-2">
             <div className="flex items-center gap-2">
               <HeadsetIcon />
               <span>
@@ -48,7 +47,7 @@ const Hero = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex gap-4 pt-6 text-secondary">
+          <div className="flex gap-4 pt-4 text-secondary">
             <Link href="/events">
               <button className="bg-primary text-white font-medium font-secondary px-6 py-2 rounded shadow-lg hover:bg-primary/90">
                 Book Now

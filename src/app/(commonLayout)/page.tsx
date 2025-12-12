@@ -1,3 +1,4 @@
+import CTA from "@/components/modules/Home/CTA";
 import EventCategories from "@/components/modules/Home/EventCategories";
 import FAQ from "@/components/modules/Home/FAQ";
 import Hero from "@/components/modules/Home/Hero";
@@ -26,12 +27,12 @@ const HomePage = () => {
         <Hero />
         <PopularEvents/>
         <EventCategories/>
-       
         <HowItWorks/>
         <TopRatedHosts/>
         <Testimonials />
         <WhyChooseUs/>
         <FAQ/>
+        <CTA/>
       </main>
     </>
   );
