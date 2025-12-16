@@ -4,19 +4,19 @@ import { loginUser } from "@/services/auth/login";
 import { Button } from "./ui/button";
 import { startTransition, useActionState } from "react";
 
-// credentials for quick login
+// credentials for quick login from environment variables
 const QUICK_LOGIN_CREDENTIALS = {
   ADMIN: {
-    email: "admin@email.com",
-    password: "admin123",
+    email: process.env.NEXT_PUBLIC_ADMIN_EMAIL!,
+    password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD!,
   },
   HOST: {
-    email: "host@email.com",
-    password: "host123",
+    email: process.env.NEXT_PUBLIC_HOST_EMAIL!,
+    password: process.env.NEXT_PUBLIC_HOST_PASSWORD!,
   },
   USER: {
-    email: "user@email.com",
-    password: "user123",
+    email: process.env.NEXT_PUBLIC_USER_EMAIL!,
+    password: process.env.NEXT_PUBLIC_USER_PASSWORD!,
   },
 };
 
