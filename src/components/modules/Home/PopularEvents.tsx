@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { getAllEvents } from "@/services/admin/eventManagement";
 import { IEvent } from "@/types/event.interface";

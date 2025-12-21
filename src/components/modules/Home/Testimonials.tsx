@@ -1,37 +1,56 @@
-"use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { getAllReviews } from "@/services/review/review.service";
 
-export default function Testimonial() {
-  const reviews = [
-    {
-      id: 1,
-      name: "Scarlett Eleanor",
-      role: "Marketing Lead",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-      text: "EventMate made our marketing workshop smooth and stress-free. The platform is easy to use, and helped us connect with participants instantly.",
-    },
-    {
-      id: 2,
-      name: "Daniel Carter",
-      role: "Event Organizer",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
-      text: "Hosting events has never been easier. The tools, dashboard, and support team made our conference a huge success. Highly recommended!",
-    },
-    {
-      id: 3,
-      name: "Ariana Brooks",
-      role: "Community Manager",
-      image:
-        "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=150&h=150&fit=crop&crop=face",
-      text: "Loved how simple everything was. Creating events, tracking participants, and receiving feedback was all seamless. Great experience overall!",
-    },
-  ];
+const Testimonial = () =>{
+  const [reviews, setReviews] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await getAllReviews();
+        const result = await response.json();
+        setReviews(result?.data || []);
+        console.log('All reviews:', result?.data);
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+    
+    fetchReviews();
+  }, []);
+    
+  // const reviews = [
+  //   {
+  //     id: 1,
+  //     name: "Scarlett Eleanor",
+  //     role: "Marketing Lead",
+  //     image:
+  //       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+  //     text: "EventMate made our marketing workshop smooth and stress-free. The platform is easy to use, and helped us connect with participants instantly.",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Daniel Carter",
+  //     role: "Event Organizer",
+  //     image:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
+  //     text: "Hosting events has never been easier. The tools, dashboard, and support team made our conference a huge success. Highly recommended!",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Ariana Brooks",
+  //     role: "Community Manager",
+  //     image:
+  //       "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=150&h=150&fit=crop&crop=face",
+  //     text: "Loved how simple everything was. Creating events, tracking participants, and receiving feedback was all seamless. Great experience overall!",
+  //   },
+  // ];
 
   const [index, setIndex] = useState(0);
 
@@ -44,6 +63,16 @@ export default function Testimonial() {
   };
 
   const current = reviews[index];
+
+  if (!reviews.length) {
+    return (
+      <section className="py-20 bg-primary/5">
+        <div className="container mx-auto text-center px-4">
+          <p className="text-gray-500">No reviews available</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20 bg-primary/5">
@@ -90,26 +119,28 @@ export default function Testimonial() {
             </div>
           </div>
 
-          <Card className="border border-primary/20 shadow-sm">
-            <CardContent className="p-6 flex gap-6 items-center">
-              <div className="w-28 h-28 rounded overflow-hidden">
+          <Card className="border border-primary/20 shadow-sm font-secondary">
+            <CardContent className="p-6 flex gap-6 items-start justify-start">
+              <div className="w-24 h-24 rounded overflow-hidden shrink-0">
                 <Image
-                  src={current.image}
+                  src={current?.reviewer?.image || "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"}
                   alt="User Image"
-                  width={120}
-                  height={120}
-                  className="object-cover rounded-md"
+                  width={112}
+                  height={112}
+                  className="w-full h-full object-cover rounded-full border border-primary/50 shadow"
                 />
               </div>
 
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {current.name}
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {current?.reviewer?.name || "Anonymous"}
                 </h3>
-                <p className="text-gray-500 text-sm mb-3">{current.role}</p>
+                <p className="text-gray-500 text-sm mb-3">
+                  Rating: {current?.rating}/5 ⭐
+                </p>
 
                 <p className="text-gray-600 leading-relaxed text-sm">
-                  {current.text}
+                  {current?.comment || "No comment provided"}
                 </p>
               </div>
             </CardContent>
@@ -119,3 +150,5 @@ export default function Testimonial() {
     </section>
   );
 }
+
+export default Testimonial;

@@ -12,16 +12,14 @@ const TopRatedHosts = async () => {
   
   try {
     const result = await getAllUsers();
-    const hostData = result || [];
-    
-    // Ensure hostData is an array before filtering
+    const hostData = result?.data || [];
+  
     if (Array.isArray(hostData)) {
       hosts = hostData.filter(
         (user: UserInfo) => user.role === "HOST"
       );
     }
-    
-    console.log(hosts);
+ 
   } catch (error) {
     console.error("Failed to fetch hosts:", error);
   }
@@ -57,11 +55,11 @@ const TopRatedHosts = async () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-primary font-medium mb-3">Top Rated Hosts</h2>
+          <h2 className="text-3xl md:text-4xl font-primary font-medium mb-3">Top Rated Hosts</h2>
           <p className="text-gray-600 font-secondary">Meet our most trusted event organizers</p>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {hosts.map((host: any) => (
+          {hosts.slice(0, 4).map((host: any) => (
             <Link key={host.id} href={`/profile/${host.id}`}>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer font-secondary">
                 <CardContent className="pt-6">

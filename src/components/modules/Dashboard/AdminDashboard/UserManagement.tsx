@@ -7,7 +7,7 @@ import {
   getAllHostApplications,
   approveHostApplication,
   rejectHostApplication,
-} from "@/services/admin/hostApplications";
+} from "@/services/admin/hostManagement";
 import { HostApplication } from "@/types/hostApplication.interface";
 import {
   Select,
@@ -113,8 +113,6 @@ const UserManagement = () => {
     }
   };
 
-
-
   const getUserApplication = (userId: string) => {
     return hostApplications.find((app) => app.userId === userId);
   };
@@ -215,7 +213,6 @@ const UserManagement = () => {
                   <Select
                     value={user.role}
                     onValueChange={(value) => handleRoleChange(user.id, value)}
-                    
                   >
                     <SelectTrigger className="w-32 bg-primary/5 border border-primary/50">
                       <SelectValue />

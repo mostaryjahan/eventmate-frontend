@@ -72,9 +72,6 @@ const PublicNavbar = async () => {
               <Link href="/login">
                 <Button>Login</Button>
               </Link>
-              <Link href="/register">
-                <Button>Register</Button>
-              </Link>
             </>
           )}
         </div>
@@ -127,9 +124,6 @@ const PublicNavbar = async () => {
                     <>
                       <Link href="/login" className="text-lg font-medium">
                         <Button>Login</Button>
-                      </Link>
-                      <Link href="/register" className="text-lg font-medium">
-                        <Button>Register</Button>
                       </Link>
                     </>
                   )}

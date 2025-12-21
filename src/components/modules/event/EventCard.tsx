@@ -6,12 +6,11 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Share2, Star } from "lucide-react";
+import { Calendar, MapPin, Users} from "lucide-react";
 import Link from "next/link";
 import { IEvent } from "@/types/event.interface";
 import Image from "next/image";
@@ -64,7 +63,7 @@ export const EventCard = ({
             fill
             className=" object-cover group-hover:scale-105 transition-transform duration-500 rounded-t-md"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
           <div className="absolute top-4 left-4 flex justify-between gap-2">
             <Badge className="bg-blue-500/90 backdrop-blur-sm text-white border-none">
               {event.type.name}

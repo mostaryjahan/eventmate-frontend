@@ -3,7 +3,7 @@ import HostManagement from "@/components/modules/Dashboard/AdminDashboard/HostMa
 const HostManagementPage = () => {
   return (
    <div className="p-6">
-      <h1 className="text-xl md:text-3xl font-semibold mb-6">
+      <h1 className="text-xl md:text-3xl font-secondary font-semibold mb-6">
         Host Management
       </h1>
       <HostManagement/>

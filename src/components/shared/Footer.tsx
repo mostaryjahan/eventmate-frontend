@@ -141,7 +141,7 @@ const Footer = () => {
         {/* Bottom Line */}
         <div className="border-t border-gray-700 mt-12 pt-6 text-center text-sm text-gray-500">
           {new Date().getFullYear()} ©
-          <span className="text-white font-semibold"> EventMate</span> — The
+          <span className="text-gray-400 font-semibold"> EventMate</span> — The
           Events Specialists. All Rights Reserved.
           <span className="ml-4">Terms of Use</span> |
           <span className="ml-2">Privacy Policy</span>

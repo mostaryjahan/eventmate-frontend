@@ -6,7 +6,7 @@ import { getAllTypes } from "@/services/admin/eventTypeManagement";
 import { EventType } from "@/types/event.interface";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import bg from "../../../assets/home/img-1.jpg";
+import bg from "../../../assets/home/img-2.jpg";
 
 const EventCategories = () => {
   const [categories, setCategories] = useState<any[]>([]);
@@ -36,7 +36,7 @@ const EventCategories = () => {
       <div className="absolute inset-0 bg-black/50"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-medium font-primary text-white mb-3">
+          <h2 className="text-3xl md:text-4xl font-medium font-primary text-white mb-3">
             Browse Events by Category
           </h2>
           <p className="text-gray-200 font-secondary max-w-2xl mx-auto">

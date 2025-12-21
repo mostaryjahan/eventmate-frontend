@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllEvents } from "@/services/admin/eventManagement";
 import { getAllUsers } from "@/services/admin/userManagement";
-import { getAllHostApplications } from "@/services/admin/hostApplications";
+import { getAllHostApplications } from "@/services/admin/hostManagement";
 import { IEvent } from "@/types/event.interface";
 import { UserInfo } from "@/types/user.interface";
 import { HostApplication } from "@/types/hostApplication.interface";
@@ -16,19 +16,21 @@ import {
 } from "lucide-react";
 
 const AdminDashboardPage = async () => {
-  const [usersResult, eventsResult, hostApplicationsResult] = await Promise.all([
-    getAllUsers(),
-    getAllEvents(),
-    getAllHostApplications(),
-  ]);
+  const [usersResult, eventsResult, hostApplicationsResult] = await Promise.all(
+    [getAllUsers(), getAllEvents(), getAllHostApplications()]
+  );
 
   const allUsers: UserInfo[] = usersResult?.data || [];
   const users = allUsers.filter((user) => user.role !== "ADMIN");
 
   const events: IEvent[] = eventsResult?.data || [];
-  const hostApplications: HostApplication[] = hostApplicationsResult?.success ? hostApplicationsResult.data || [] : [];
-  const pendingApplications = hostApplications.filter(app => app.status === "PENDING");
-  
+  const hostApplications: HostApplication[] = hostApplicationsResult?.success
+    ? hostApplicationsResult.data || []
+    : [];
+  const pendingApplications = hostApplications.filter(
+    (app) => app.status === "PENDING"
+  );
+
   const totalRevenue = events.reduce(
     (acc, event) =>
       acc + parseFloat(event.joiningFee) * (event._count?.participants || 0),
@@ -175,7 +177,8 @@ const AdminDashboardPage = async () => {
                       {application.user.email}
                     </p>
                     <p className="text-xs text-orange-600">
-                      Applied: {new Date(application.appliedAt).toLocaleDateString()}
+                      Applied:{" "}
+                      {new Date(application.appliedAt).toLocaleDateString()}
                     </p>
                   </div>
                 </div>

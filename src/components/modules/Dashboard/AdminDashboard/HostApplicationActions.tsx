@@ -1,7 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { approveHostApplication, rejectHostApplication } from "@/services/admin/hostApplications";
+import {
+  approveHostApplication,
+  rejectHostApplication,
+} from "@/services/admin/hostManagement";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -10,7 +13,10 @@ interface HostApplicationActionsProps {
   status: string;
 }
 
-export const HostApplicationActions = ({ userId, status }: HostApplicationActionsProps) => {
+export const HostApplicationActions = ({
+  userId,
+  status,
+}: HostApplicationActionsProps) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -42,18 +48,18 @@ export const HostApplicationActions = ({ userId, status }: HostApplicationAction
 
   return (
     <div className="flex gap-2">
-      <Button 
-        size="sm" 
-        variant="outline" 
+      <Button
+        size="sm"
+        variant="outline"
         className="text-green-600 border-green-600"
         onClick={handleApprove}
         disabled={loading}
       >
         Approve
       </Button>
-      <Button 
-        size="sm" 
-        variant="outline" 
+      <Button
+        size="sm"
+        variant="outline"
         className="text-red-600 border-red-600"
         onClick={handleReject}
         disabled={loading}
