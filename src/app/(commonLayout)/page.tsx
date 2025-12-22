@@ -5,7 +5,7 @@ import Hero from "@/components/modules/Home/Hero";
 import HowItWorks from "@/components/modules/Home/HowItWorks";
 import PopularEvents from "@/components/modules/Home/PopularEvents";
 import Testimonials from "@/components/modules/Home/Testimonials";
-import TopRatedHosts from "@/components/modules/Home/TopRatedHosts";
+// import TopRatedHosts from "@/components/modules/Home/TopRatedHosts";
 import WhyChooseUs from "@/components/modules/Home/WhyChooseUs";
 import Head from "next/head";
 
@@ -28,7 +28,7 @@ const HomePage = () => {
         <EventCategories />
         <HowItWorks />
         <Testimonials />
-        <TopRatedHosts />
+        {/* <TopRatedHosts /> */}
 
         <WhyChooseUs />
         <FAQ />
