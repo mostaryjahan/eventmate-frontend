@@ -16,7 +16,7 @@ const Testimonial = () =>{
         const response = await getAllReviews();
         const result = await response.json();
         setReviews(result?.data || []);
-        console.log('All reviews:', result?.data);
+    
       } catch (error) {
         console.error('Error fetching reviews:', error);
       }
@@ -25,33 +25,7 @@ const Testimonial = () =>{
     fetchReviews();
   }, []);
     
-  // const reviews = [
-  //   {
-  //     id: 1,
-  //     name: "Scarlett Eleanor",
-  //     role: "Marketing Lead",
-  //     image:
-  //       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-  //     text: "EventMate made our marketing workshop smooth and stress-free. The platform is easy to use, and helped us connect with participants instantly.",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Daniel Carter",
-  //     role: "Event Organizer",
-  //     image:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
-  //     text: "Hosting events has never been easier. The tools, dashboard, and support team made our conference a huge success. Highly recommended!",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Ariana Brooks",
-  //     role: "Community Manager",
-  //     image:
-  //       "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=150&h=150&fit=crop&crop=face",
-  //     text: "Loved how simple everything was. Creating events, tracking participants, and receiving feedback was all seamless. Great experience overall!",
-  //   },
-  // ];
-
+ 
   const [index, setIndex] = useState(0);
 
   const prev = () => {
@@ -66,7 +40,7 @@ const Testimonial = () =>{
 
   if (!reviews.length) {
     return (
-      <section className="py-20 bg-primary/5">
+      <section className="py-20 bg-primary/10">
         <div className="container mx-auto text-center px-4">
           <p className="text-gray-500">No reviews available</p>
         </div>
@@ -85,7 +59,7 @@ const Testimonial = () =>{
           <h2 className="text-4xl font-primary font-medium text-gray-900 leading-tight mb-3">
             What people say
             <br />
-            about EventMate
+            about EventMate?
           </h2>
           <p className="text-gray-500 font-secondary max-w-md leading-relaxed">
             EventMate has made planning and managing events so much easier.

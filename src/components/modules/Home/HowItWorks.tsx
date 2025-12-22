@@ -35,7 +35,7 @@ const steps: Step[] = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 bg-primary/5 relative overflow-hidden">
+    <section className="py-20 bg-gray-50 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-slate-100 mask-[linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10" />
       

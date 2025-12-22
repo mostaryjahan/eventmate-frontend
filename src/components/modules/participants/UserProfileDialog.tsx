@@ -9,6 +9,9 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { UserInfo } from "@/types/user.interface";
 import { FriendRequestButton } from "../friend/FriendRequestButton";
+import { getCookie } from "@/services/auth/tokenHandlers";
+import { getUserInfo } from "@/services/auth/getUserInfo";
+import { useEffect, useState } from "react";
 
 export const UserProfileDialog = ({
   user,
@@ -19,11 +22,24 @@ export const UserProfileDialog = ({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) => {
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const accessToken = await getCookie("accessToken");
+      if (accessToken) {
+        const info = await getUserInfo();
+        setUserInfo(info);
+      }
+    };
+    fetchUserInfo();
+  }, []);
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>User Profile</DialogTitle>
+          <DialogTitle>Profile</DialogTitle>
         </DialogHeader>
         <div className="space-y-2">
           <div className="flex items-center gap-4">
@@ -69,9 +85,12 @@ export const UserProfileDialog = ({
             </div>
           )}
 
-          <div className="flex justify-end gap-2 pt-4">
-            <FriendRequestButton userId={user.id} />
-          </div>
+{/* is user sees own profile then doesnot see friend req btn */}
+{userInfo && userInfo.id !== user.id && (
+  <div className="flex justify-end gap-2 pt-4">
+    <FriendRequestButton userId={user.id} />
+  </div>
+)}
         </div>
       </DialogContent>
     </Dialog>

@@ -21,18 +21,18 @@ const HomePage = () => {
           content="Simple and smart event management for everyone."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <Hero />
-        <PopularEvents/>
-        <EventCategories/>
-        <HowItWorks/>
-        <TopRatedHosts/>
+        <PopularEvents />
+        <EventCategories />
+        <HowItWorks />
         <Testimonials />
-        <WhyChooseUs/>
-        <FAQ/>
-        <CTA/>
+        <TopRatedHosts />
+
+        <WhyChooseUs />
+        <FAQ />
+        <CTA />
       </main>
     </>
   );

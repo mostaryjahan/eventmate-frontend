@@ -24,32 +24,7 @@ const TopRatedHosts = async () => {
     console.error("Failed to fetch hosts:", error);
   }
 
-  // Fallback data if API fails or returns empty
-  if (hosts.length === 0) {
-    hosts = [
-      {
-        id: 1,
-        name: "Sarah Johnson",
-        location: "Dhaka, Bangladesh",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-        rating: 4.9
-      },
-      {
-        id: 2,
-        name: "Michael Chen",
-        location: "Dhaka, Bangladesh",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-        rating: 4.8
-      },
-      {
-        id: 3,
-        name: "Emily Rodriguez",
-        location: "Dhaka, Bangladesh",
-        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-        rating: 5
-      }
-    ];
-  }
+  
 
   return (
     <section className="py-16 bg-gray-50">

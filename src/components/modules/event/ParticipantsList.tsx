@@ -20,7 +20,7 @@ export function ParticipantsList({ participants, maxDisplay = 10 }: Participants
 
   return (
     <div>
-      <h3 className="font-semibold mb-4">Who's Going ({participants.length})</h3>
+      <h3 className="font-semibold mb-4">Who&apos;s Going ({participants.length})</h3>
       <div className="flex flex-wrap gap-4">
         {displayParticipants.map((participant) => (
           <Link 
